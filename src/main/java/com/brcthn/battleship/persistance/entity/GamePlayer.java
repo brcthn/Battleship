@@ -12,16 +12,23 @@ public class GamePlayer {
     @GenericGenerator(name = "native", strategy = "native")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     private Long id;
-
     private Date joinDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id")
-    private Game Game;
+    private Game game;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_id")
-    private Player Player;
+    private Player player;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public GamePlayer() {
     }
@@ -34,19 +41,19 @@ public class GamePlayer {
         this.joinDate = joinDate;
     }
 
-    public com.brcthn.battleship.persistance.entity.Game getGame() {
-        return Game;
+    public Game getGame() {
+        return this.game;
     }
 
-    public void setGame(com.brcthn.battleship.persistance.entity.Game game) {
-        Game = game;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    public com.brcthn.battleship.persistance.entity.Player getPlayer() {
-        return Player;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayer(com.brcthn.battleship.persistance.entity.Player player) {
-        Player = player;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
