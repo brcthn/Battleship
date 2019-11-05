@@ -30,6 +30,9 @@ public class BattleshipApplication {
             playerRepository.save(player1);
             Player player2 = new Player("john", "Nacube", "JohnN","c.obrian@ctu.gov");
             playerRepository.save(player2);
+            Player player3 = new Player("Luis", "Strosbery", "LuisS","l.strosberyn@ctu.gov");
+            playerRepository.save(player3);
+
 
             Date time = new Date();// su anki zamani new Date() ile aldi. time -> 00:55 23.10.2019 Wed
 
@@ -59,6 +62,16 @@ public class BattleshipApplication {
             gp1.setGame(game2);
             gp1.setPlayer(player2);
             gamePlayerRepository.save(gp1);
+            GamePlayer gp3 = new GamePlayer();
+            gp3.setGame(game1);
+            gp3.setPlayer(player3);
+            gamePlayerRepository.save(gp3);
+            GamePlayer gp4 = new GamePlayer();
+            gp4.setGame(game3);
+            gp4.setPlayer(player3);
+            gamePlayerRepository.save(gp4);
+
+
 
 
 
