@@ -3,9 +3,11 @@ package com.brcthn.battleship;
 import com.brcthn.battleship.persistance.entity.Game;
 import com.brcthn.battleship.persistance.entity.GamePlayer;
 import com.brcthn.battleship.persistance.entity.Player;
+import com.brcthn.battleship.persistance.entity.Ship;
 import com.brcthn.battleship.persistance.repository.GamePlayerRepository;
 import com.brcthn.battleship.persistance.repository.GameRepository;
 import com.brcthn.battleship.persistance.repository.PlayerRepository;
+import com.brcthn.battleship.persistance.repository.ShipRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,13 +26,13 @@ public class BattleshipApplication {
 
 
     @Bean
-    public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository) {
+    public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository,ShipRepository shipRepository) {
         return (args) -> {
-            Player player1 = new Player("Jack", "Bauer", "JackB","j.bauer@ctu.gov ");
+            Player player1 = new Player("Jack", "Bauer", "JackB","j.bauer@ctu.gov ","1234");
             playerRepository.save(player1);
-            Player player2 = new Player("john", "Nacube", "JohnN","c.obrian@ctu.gov");
+            Player player2 = new Player("john", "Nacube", "JohnN","c.obrian@ctu.gov", "123456");
             playerRepository.save(player2);
-            Player player3 = new Player("Luis", "Strosbery", "LuisS","l.strosberyn@ctu.gov");
+            Player player3 = new Player("Luis", "Strosbery", "LuisS","l.strosberyn@ctu.gov","1234567");
             playerRepository.save(player3);
 
 
@@ -53,23 +55,62 @@ public class BattleshipApplication {
             game3.setCreationData(time);
             gameRepository.save(game3);
 
+
+
+
+
+            List<String>locationShip=new ArrayList<>();
+            locationShip.add("'H3', 'H4' , 'H5'");
+
+            Ship cruiser = new Ship("cruiser",locationShip );
+            shipRepository.save(cruiser);
+            Ship destroyer=new Ship("destroyer",locationShip);
+            shipRepository.save(destroyer);
+            Ship battleship=new Ship(" battleship",locationShip);
+            shipRepository.save(battleship);
+            Ship carrier=new Ship("carrier",locationShip);
+            shipRepository.save(carrier);
+            Ship submarine=new Ship("submarine",locationShip);
+            shipRepository.save(submarine);
+
+            List<Ship> addShip=new ArrayList<>();
+            addShip.add(cruiser);
+            addShip.add(destroyer);
+            addShip.add(battleship);
+            addShip.add(carrier);
+            addShip.add(submarine);
+
             GamePlayer gp = new GamePlayer();
             gp.setGame(game2);
             gp.setPlayer(player1);
+            gp.setShips(addShip);
             gamePlayerRepository.save(gp);
-
             GamePlayer gp1 = new GamePlayer();
             gp1.setGame(game2);
             gp1.setPlayer(player2);
+            gp1.setShips(addShip);
             gamePlayerRepository.save(gp1);
+            GamePlayer gp2 = new GamePlayer();
+            gp2.setGame(game1);
+            gp2.setPlayer(player3);
+            gp2.setShips(addShip);
+            gamePlayerRepository.save(gp2);
             GamePlayer gp3 = new GamePlayer();
-            gp3.setGame(game1);
+            gp3.setGame(game3);
             gp3.setPlayer(player3);
+            gp3.setShips(addShip);
             gamePlayerRepository.save(gp3);
-            GamePlayer gp4 = new GamePlayer();
-            gp4.setGame(game3);
-            gp4.setPlayer(player3);
-            gamePlayerRepository.save(gp4);
+
+
+
+
+
+
+
+
+            //gp.add(cruiser);
+
+
 
 
 

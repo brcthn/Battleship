@@ -48,6 +48,42 @@ public class SalvoController {
     @GetMapping("/games")
     public List<Map<String, Object>> getAll() {
         List<Game> all = repo.findAll();
+
+
+
+
+
+
+
+/*
+* {
+   "id":1,
+   "created":1456438201629,
+   "gamePlayers":[
+      {
+         "id":1,
+         "player":{
+            "id":1,
+            "email":"j.bauer@ctu.gov"
+         }
+      },
+      {
+         "id":2,
+         "player":{
+            "id":2,
+            "email":"c.obrian@ctu.gov"
+         }
+      }
+   ]
+}
+*
+* */
+
+
+
+
+
+
         List<Map<String, Object>> results = new ArrayList<>();
         for(int i=0;i<all.size();i++){
             Map<String,Object>gameMap= new LinkedHashMap<>();

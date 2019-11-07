@@ -20,6 +20,7 @@ public class Player {
     private String lastName;
     private String userName;
     private String email;
+    private String password;
 
     public Player() {
     }
@@ -36,11 +37,16 @@ public class Player {
         this.id = id;
     }
 
-    public Player(String firstName, String lastName, String userName,String email) {
+    public Player(String firstName, String lastName, String userName,String email,String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.email= email;
+        this.email = email;
+        this.password = password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

@@ -3,7 +3,7 @@ package com.brcthn.battleship.persistance.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 
 @Entity
@@ -21,6 +21,9 @@ public class GamePlayer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player_id")
     private Player player;
+
+    @OneToMany(mappedBy="gamePlayer", fetch = FetchType.EAGER)
+    private List<Ship> ships;
 
     public Long getId() {
         return id;
@@ -56,4 +59,19 @@ public class GamePlayer {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(List<Ship> ships) {
+        if(this.ships == null){
+            this.ships = new ArrayList<>();
+        }
+        this.ships = ships;
+    }
+
+//    public void add(Ship ship){
+//        this.ships.add(ship);
+//    }
 }

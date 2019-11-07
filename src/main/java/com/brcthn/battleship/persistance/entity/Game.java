@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -45,13 +46,7 @@ public class Game {
     public void setGamePlayers(List<GamePlayer> gamePlayers) {
         this.gamePlayers = gamePlayers;
     }
-//    public List<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(List<Player> players) {
-//        this.players = players;
-//    }
+
 }
 
 
