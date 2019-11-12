@@ -12,10 +12,9 @@ import java.util.UUID;
 @Entity
 public class Ship {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    private Long id;
     private String shipType;
 
 
@@ -30,8 +29,8 @@ public class Ship {
 
     public Ship(String shipType, List<String> locations) {
         this.shipType = shipType;
-
         this.locations = locations;
+
     }
 
     public Ship() {

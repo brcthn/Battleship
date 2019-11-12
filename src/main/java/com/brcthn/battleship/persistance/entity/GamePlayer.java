@@ -23,7 +23,7 @@ public class GamePlayer {
     private Player player;
 
     @OneToMany(mappedBy="gamePlayer", fetch = FetchType.EAGER)
-    private List<Ship> ships;
+    private List<Ship> ships = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -65,13 +65,14 @@ public class GamePlayer {
     }
 
     public void setShips(List<Ship> ships) {
-        if(this.ships == null){
-            this.ships = new ArrayList<>();
-        }
         this.ships = ships;
     }
 
-//    public void add(Ship ship){
-//        this.ships.add(ship);
-//    }
+    public void add(Ship ship){
+        ships.add(ship);
+        ship.setGamePlayer(this);
+    }
+
+
+
 }
