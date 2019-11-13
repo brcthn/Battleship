@@ -56,15 +56,19 @@ public class BattleshipApplication {
             gameRepository.save(game3);
 
 
-            List<String>locationShip=new ArrayList<>();
-            locationShip.add("'H3', 'H4' , 'H5'");
-
+            List<String>locationShip1=new ArrayList<>();
+            locationShip1.add("H3");
+            locationShip1.add("H4");
+            locationShip1.add("H5");
+            List<String>locationShip2=new ArrayList<>();
+             locationShip2.add("C6");
+             locationShip2.add("D6");
 
             GamePlayer gp = new GamePlayer();
             gp.setGame(game2);
             gp.setPlayer(player1);
-            Ship battleship=new Ship(" battleship",locationShip);
-            Ship carrier=new Ship("carrier",locationShip);
+            Ship battleship=new Ship(" battleship",locationShip1);
+            Ship carrier=new Ship("carrier",locationShip2);
             gp.add(carrier);
             gp.add(battleship);
             gamePlayerRepository.save(gp);
@@ -74,7 +78,7 @@ public class BattleshipApplication {
             GamePlayer gp1 = new GamePlayer();
             gp1.setGame(game2);
             gp1.setPlayer(player2);
-            Ship cruiser1 = new Ship("cruiser",locationShip );
+            Ship cruiser1 = new Ship("cruiser",locationShip1 );
             gp1.add(cruiser1);
             gamePlayerRepository.save(gp1);
             shipRepository.save(cruiser1);
@@ -82,8 +86,8 @@ public class BattleshipApplication {
             GamePlayer gp2 = new GamePlayer();
             gp2.setGame(game1);
             gp2.setPlayer(player3);
-            Ship cruiser2 = new Ship("cruiser",locationShip );
-            Ship carrier2 = new Ship("carrier",locationShip);
+            Ship cruiser2 = new Ship("cruiser",locationShip1 );
+            Ship carrier2 = new Ship("carrier",locationShip2);
             gp2.add(cruiser2);
             gp2.add(carrier2);
             gamePlayerRepository.save(gp2);
