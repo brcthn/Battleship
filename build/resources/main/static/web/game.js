@@ -21,7 +21,7 @@ fetch("http://localhost:8080/api/game_view/"+myParam
 )
 renderHeaders();
 renderRows();
-getEmail();
+
 //map sirayla elemanlari gezer.
 function getHeaderHtml(){
     return "<tr><th></th>" + letter.map(function(letter){
@@ -46,8 +46,6 @@ function renderRows() {
 }
 
 function getShipLocation(){
-    // var ship = [];
-    // ship.push(shipInfo.ship)
     for(var i=0;i< shipInfo.ship.length;i++){
        for(var k=0;k<shipInfo.ship[i].ships.length;k++){
         var shipLocation =shipInfo.ship[i].ships[k];
@@ -60,29 +58,23 @@ function indexCell(n){
     var cellsnumber= parseInt(letter.indexOf(n.charAt(0).toString())+1) 
     return cellsnumber;
 }
-
 function indexRow(n){
     var rowsnumber=(n.charAt(1));
     return rowsnumber;
 }
 
-
 function getEmail(){
   var email=""; 
-    for(var i=0;i< shipInfo.gamePlayers.length;i++){
-        console.log(shipInfo.id) 
+    for(var i=0;i< shipInfo.gamePlayers.length;i++){ 
         if(shipInfo.id == shipInfo.gamePlayers[i].player.id){
-            console.log(shipInfo.id) 
             email = shipInfo.gamePlayers[i].player.email;
             document.getElementById("playerName1").innerHTML=shipInfo.gamePlayers[i].player.firstName+" "+shipInfo.gamePlayers[i].player.lastName
             document.getElementById("gameinformation1").innerHTML=email +" "+ "(you)" 
-        console.log(email+ "1");
         }
         else{
             email = shipInfo.gamePlayers[i].player.email;
             document.getElementById("playerName2").innerHTML=shipInfo.gamePlayers[i].player.firstName+" "+shipInfo.gamePlayers[i].player.lastName
             document.getElementById("gameinformation2").innerHTML=email; 
-            console.log(email+ "2")
         }
     }
 }

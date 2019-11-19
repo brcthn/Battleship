@@ -3,6 +3,7 @@ package com.brcthn.battleship.api;
 
 import com.brcthn.battleship.persistance.entity.Game;
 import com.brcthn.battleship.persistance.entity.GamePlayer;
+import com.brcthn.battleship.persistance.entity.Salvo;
 import com.brcthn.battleship.persistance.entity.Ship;
 import com.brcthn.battleship.persistance.repository.GamePlayerRepository;
 import com.brcthn.battleship.persistance.repository.GameRepository;
@@ -26,7 +27,6 @@ public class SalvoController {
     @GetMapping("/games")
     public List<Map<String, Object>> getAll() {
         List<Game> all = gameRepository.findAll();
-
         List<Map<String, Object>> results = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             Map<String, Object> gameMap = new LinkedHashMap<>();
@@ -57,24 +57,38 @@ public class SalvoController {
         List<Map<String, Object>> gamePlayerList = new ArrayList<>();
 
         Game game = gamePlayer.getGame();
-        for(GamePlayer gp: game.getGamePlayers()){
+        for (GamePlayer gp : game.getGamePlayers()) {
             Map<String, Object> gpMap = new LinkedHashMap<>();
             gpMap.put("id", gp.getId());
             gpMap.put("player", gp.getPlayer());
             gamePlayerList.add(gpMap);
         }
 
-        List<Map<String,Object>>shipList=new ArrayList<>();
-        for(int i=0;i<gamePlayer.getShips().size();i++){
-            Map<String ,Object> shipMap=new LinkedHashMap<>();
-            shipMap.put("type",gamePlayer.getShips().get(i).getShipType());
-            shipMap.put("ships",gamePlayer.getShips().get(i).getLocations());
+        List<Map<String, Object>> shipList = new ArrayList<>();
+        for (Ship s:gamePlayer.getShips()) {
+            Map<String, Object> shipMap = new LinkedHashMap<>();
+            shipMap.put("type", s.getShipType());
+            shipMap.put("ships", s.getLocations());
             shipList.add(shipMap);
+
+        }
+
+        List<Map<String,Object>> salvoList=new ArrayList<>();
+        for(GamePlayer gp: game.getGamePlayers()){
+            for(Salvo s: gp.getSalvoes()){
+                Map<String,Object>salvoMap=new LinkedHashMap<>();
+                salvoMap.put("turn",s.getTurnNumber());
+                salvoMap.put("player",gp.getPlayer().getId());
+                salvoMap.put("locations",s.getLocation());
+                salvoList.add(salvoMap);
+            }
         }
         gamePlayers.put("gamePlayers", gamePlayerList);
         gamePlayers.put("ship", shipList);
+        gamePlayers.put("salvoes",salvoList);
         return gamePlayers;
     }
+
 
 
 }

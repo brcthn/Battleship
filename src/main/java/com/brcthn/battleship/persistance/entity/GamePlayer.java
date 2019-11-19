@@ -1,7 +1,6 @@
 package com.brcthn.battleship.persistance.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,6 +13,7 @@ public class GamePlayer {
     private Long id;
     private Date joinDate;
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id")
     private Game game;
@@ -22,8 +22,12 @@ public class GamePlayer {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @OneToMany(mappedBy="gamePlayer", fetch = FetchType.EAGER)
-    private List<Ship> ships = new ArrayList<>();
+    @OneToMany(mappedBy = "gamePlayer", fetch = FetchType.EAGER)
+    private Set<Ship> ships = new HashSet<>();
+
+    @OneToMany(mappedBy = "gamePlayer", fetch = FetchType.EAGER)
+    private Set<Salvo> salvoes = new HashSet<>();
+
 
     public Long getId() {
         return id;
@@ -60,19 +64,29 @@ public class GamePlayer {
         this.player = player;
     }
 
-    public List<Ship> getShips() {
+    public Set<Ship> getShips() {
         return ships;
     }
 
-    public void setShips(List<Ship> ships) {
+    public void setShips(Set<Ship> ships) {
         this.ships = ships;
     }
 
-    public void add(Ship ship){
+    public void add(Ship ship) {
         ships.add(ship);
         ship.setGamePlayer(this);
     }
 
+    public void addSalvo(Salvo salvo) {
+        salvoes.add(salvo);
+        salvo.setGamePlayer(this);
+    }
 
+    public Set<Salvo> getSalvoes() {
+        return salvoes;
+    }
 
+    public void setSalvoes(Set<Salvo> salvoes) {
+        this.salvoes = salvoes;
+    }
 }
