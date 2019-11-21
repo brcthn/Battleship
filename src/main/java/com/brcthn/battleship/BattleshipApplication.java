@@ -60,8 +60,8 @@ public class BattleshipApplication {
             s1T2.add("B4");
             s1T2.add("D8");
             List<String>s2T2=new ArrayList<>();
-            s2T2.add("A7");
-            s2T2.add("F1");
+            s2T2.add("C7");
+            s2T2.add("H3");
 
 
             Salvo s1T1L1=new Salvo(1,s1T1);

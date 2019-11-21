@@ -1,12 +1,3 @@
-#table{ 
- margin-left:250px;   
- margin-top: 50px;
- margin-right: 250px;
- margin-bottom: 100px;
+.title{
+    text-align: center;
 }
-#title{
-text-align: center;
-}
-
-
-
