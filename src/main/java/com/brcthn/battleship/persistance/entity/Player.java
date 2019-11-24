@@ -13,8 +13,11 @@ public class Player {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
-    @OneToMany(mappedBy = "player", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
     private Set<GamePlayer> gamePlayers;
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
+    private List<Score> scores;
 
     private String firstName;
     private String lastName;
@@ -37,7 +40,7 @@ public class Player {
         this.id = id;
     }
 
-    public Player(String firstName, String lastName, String userName,String email,String password) {
+    public Player(String firstName, String lastName, String userName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -81,6 +84,23 @@ public class Player {
         this.userName = userName;
     }
 
+    public List<Score> getScores() {
+        return scores;
+    }
 
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    //Player.getScore(game)
+    // oyuncunun score nu bulduk
+    public Score getScore(Game game) {
+        for (Score score : scores) {
+            if (score.getGame().getId() == game.getId()) {
+                return score;
+            }
+        }
+        return null;
+    }
 }
 

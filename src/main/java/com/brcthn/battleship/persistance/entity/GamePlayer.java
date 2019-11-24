@@ -89,4 +89,12 @@ public class GamePlayer {
     public void setSalvoes(Set<Salvo> salvoes) {
         this.salvoes = salvoes;
     }
+
+    public Score getScore(){
+        //TODO: find the score. gameplayer in icinden bul
+       return this.player.getScore(this.game);
+
+    }
+
+
 }

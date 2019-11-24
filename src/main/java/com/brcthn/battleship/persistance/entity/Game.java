@@ -20,6 +20,8 @@ public class Game {
     @OneToMany(mappedBy = "game", fetch=FetchType.EAGER) //mappedBy ne ogren
     private List<GamePlayer> gamePlayers;
 
+    @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
+    private List<Score> scores;
 
     public long getId() {
         return id;
@@ -29,6 +31,14 @@ public class Game {
     }
 
     public Game() {
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
     }
 
     public Date getCreationData() {

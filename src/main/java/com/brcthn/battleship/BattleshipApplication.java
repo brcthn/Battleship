@@ -21,7 +21,7 @@ public class BattleshipApplication {
 
 
     @Bean
-    public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository,ShipRepository shipRepository,SalvoRepository salvoRepository) {
+    public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository,ShipRepository shipRepository,SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
         return (args) -> {
             Player player1 = new Player("Jack", "Bauer", "JackB","j.bauer@ctu.gov ","1234");
             playerRepository.save(player1);
@@ -36,12 +36,19 @@ public class BattleshipApplication {
             game1.setCreationData(time);
             gameRepository.save(game1);
 
+            //game2
             Game game2 = new Game();
             time.setHours(time.getHours() + 1); //time -> 01:55 23.10.2019 Wed
             game2.setCreationData(time);
             gameRepository.save(game2);
 
+            Score score2= new Score();
+            score2.setScore(100);
+            score2.setGame(game2);
+            score2.setPlayer(player1);
+            scoreRepository.save(score2);
 
+            //game3
             Game game3 = new Game();
             time.setHours(time.getHours() + 1); //time -> 02:55 23.10.2019 Wed
             game3.setCreationData(time);
@@ -82,6 +89,9 @@ public class BattleshipApplication {
              locationShip3.add("E3");
             locationShip3.add("E4");
 
+
+
+
             //gp
             GamePlayer gp = new GamePlayer();
             gp.setGame(game2);
@@ -91,13 +101,15 @@ public class BattleshipApplication {
             gp.add(carrier);
             gp.add(battleship);
             gp.addSalvo(s1T1L1);
-            gp.addSalvo(s1T2L2);
+
+
 
             gamePlayerRepository.save(gp);
             shipRepository.save(carrier);
             shipRepository.save(battleship);
             salvoRepository.save(s1T1L1);
             salvoRepository.save(s1T2L2);
+
 
             //gp1
             GamePlayer gp1 = new GamePlayer();
@@ -115,19 +127,6 @@ public class BattleshipApplication {
             shipRepository.save(cruiser1);
             salvoRepository.save(s2T2L2);
             salvoRepository.save(s2T1L1);
-
-            //gp2
-//            GamePlayer gp2 = new GamePlayer();
-//            gp2.setGame(game1);
-//            gp2.setPlayer(player3);
-//            Ship cruiser2 = new Ship("cruiser",locationShip1 );
-//            Ship carrier2 = new Ship("carrier",locationShip3);
-//            gp2.add(cruiser2);
-//            gp2.add(carrier2);
-//            gamePlayerRepository.save(gp2);
-//
-//            shipRepository.save(cruiser2);
-//            shipRepository.save(carrier2);
 
 
 

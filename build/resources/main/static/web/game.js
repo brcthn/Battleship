@@ -16,16 +16,13 @@ fetch("http://localhost:8080/api/game_view/"+myParam
   getShipLocation();
   getEmail();
   getPlayerSalvo();
- 
 }).catch(function(error){
     console.log("Request failed: " + error.message);
 }
 )
-
 renderHeaders();
 renderRows();
 createSalvoGrid();
-
 
 //map sirayla elemanlari gezer.
 //Ship Grid
@@ -105,58 +102,18 @@ function getPlayerSalvo(){
             if(info.id == info.salvoes[i].player){
                document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#426585";
             } else {
-               info.ship.forEach(s => {
-                   if(s.ships.includes(info.salvoes[i].locations[k])){
-                        document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#000000";
-                   } else {
-                        document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#dc6900"; 
-                   }
-               });
+                var isHit = false;
+                info.ship.forEach(s => {
+                    if(!isHit){
+                        if(s.ships.includes(info.salvoes[i].locations[k])){
+                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#000000";
+                            isHit = true;
+                        } else {
+                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#dc6900"; 
+                        }
+                    }
+                });
             } 
         }
     }
 }
-
-
-
-// if(info.ship[i].ships[k] == info.salvoes[i].locations[k]){
-//     var salvoLocation =info.salvoes[i].locations[k];
-//     document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#ffa700";
-// }
-// else{
-//     var salvoLocation =info.salvoes[i].locations[k];
-//     document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor="#dc6900"; 
-// } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

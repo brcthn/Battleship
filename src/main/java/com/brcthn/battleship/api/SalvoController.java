@@ -1,10 +1,7 @@
 package com.brcthn.battleship.api;
 
 
-import com.brcthn.battleship.persistance.entity.Game;
-import com.brcthn.battleship.persistance.entity.GamePlayer;
-import com.brcthn.battleship.persistance.entity.Salvo;
-import com.brcthn.battleship.persistance.entity.Ship;
+import com.brcthn.battleship.persistance.entity.*;
 import com.brcthn.battleship.persistance.repository.GamePlayerRepository;
 import com.brcthn.battleship.persistance.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +33,23 @@ public class SalvoController {
             for (int k = 0; k < all.get(i).getGamePlayers().size(); k++) {
                 Map<String, Object> gamePlayerMap = new LinkedHashMap<>();
                 gamePlayerMap.put("id", all.get(i).getGamePlayers().get(k).getId());
+
                 Map<String, Object> playerMap = new LinkedHashMap<>();
                 playerMap.put("id", all.get(i).getGamePlayers().get(k).getPlayer().getId());
                 playerMap.put("email", all.get(i).getGamePlayers().get(k).getPlayer().getEmail());
                 gamePlayerMap.put("player", playerMap);
+
+                Map<String,Object>scoreMap=new LinkedHashMap<>();
+                Score score = all.get(i).getGamePlayers().get(k).getScore();
+                if(score != null){
+                    scoreMap.put("id",score.getId());
+                    scoreMap.put("score",score.getScore());
+                    scoreMap.put("gameId",score.getGame().getId());
+                    scoreMap.put("playerId",score.getPlayer().getId());
+
+                    gamePlayerMap.put("score",scoreMap);
+                }
+
                 gamePlayerList.add(gamePlayerMap);
             }
             gameMap.put("gamePlayer", gamePlayerList);
@@ -88,7 +98,5 @@ public class SalvoController {
         gamePlayers.put("salvoes",salvoList);
         return gamePlayers;
     }
-
-
-
+    
 }
