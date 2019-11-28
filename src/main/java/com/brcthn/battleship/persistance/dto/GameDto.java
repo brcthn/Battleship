@@ -1,36 +1,36 @@
 package com.brcthn.battleship.persistance.dto;
 
-import com.brcthn.battleship.persistance.entity.GamePlayer;
 
 import java.util.Date;
+import java.util.List;
 
 public class GameDto {
 
-    private int id;
-    private Date creationData;
-    private GamePlayerDto gamePlayer;
+    private long id;
+    private List<GamePlayerDto> gamePlayer;
+    private String created;
 
-    public int getId() {
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Date getCreationData() {
-        return creationData;
-    }
-
-    public void setCreationData(Date creationData) {
-        this.creationData = creationData;
-    }
-
-    public GamePlayerDto getGamePlayer() {
+    public List<GamePlayerDto> getGamePlayer() {
         return gamePlayer;
     }
 
-    public void setGamePlayer(GamePlayerDto gamePlayer) {
+    public void setGamePlayer(List<GamePlayerDto> gamePlayer) {
         this.gamePlayer = gamePlayer;
     }
 }

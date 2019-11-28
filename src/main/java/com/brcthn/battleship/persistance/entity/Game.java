@@ -6,6 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private Date creationData;
+    private String creationData;
 
     @OneToMany(mappedBy = "game", fetch=FetchType.EAGER) //mappedBy ne ogren
     private List<GamePlayer> gamePlayers;
@@ -33,20 +35,20 @@ public class Game {
     public Game() {
     }
 
+    public String getCreationData() {
+        return creationData;
+    }
+
+    public void setCreationData(String creationData) {
+        this.creationData = creationData;
+    }
+
     public List<Score> getScores() {
         return scores;
     }
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
-    }
-
-    public Date getCreationData() {
-        return creationData;
-    }
-
-    public void setCreationData(Date creationData) {
-        this.creationData = creationData;
     }
 
     public List<GamePlayer> getGamePlayers() {

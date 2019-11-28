@@ -13,7 +13,7 @@ public class Ship {
     @GenericGenerator(name = "native", strategy = "native")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     private Long id;
-    private String shipType;
+    private String type;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,7 +26,7 @@ public class Ship {
     private List<String> locations = new ArrayList<>();
 
     public Ship(String shipType, List<String> locations) {
-        this.shipType = shipType;
+        this.type = shipType;
         this.locations = locations;
 
     }
@@ -34,12 +34,12 @@ public class Ship {
     public Ship() {
     }
 
-    public String getShipType() {
-        return shipType;
+    public String getType() {
+        return type;
     }
 
-    public void setShipType(String shipType) {
-        this.shipType = shipType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public GamePlayer getGamePlayer() {
