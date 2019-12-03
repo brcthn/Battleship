@@ -26,7 +26,7 @@ for(var i=0;i<game.gamePlayer.length;i++){
     emailList=emailList+(game.gamePlayer[i].player.email + ",");  
     console.log(game)
 }
-   return "<li class='list-group-item' >" + game.id + "&nbsp&nbsp"+game.created+"&nbsp&nbsp"+ emailList+ "</li>"   
+   return "<li class='list-group-item'>" + game.id + "&nbsp&nbsp&nbsp&nbsp"+game.created+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList+ "</li>"   
 }
 
 function getListHtml(data) {
@@ -37,57 +37,11 @@ function renderList(data) {
     var html = getListHtml(data);
     document.getElementById("list").innerHTML = html;
 }
-
-// function renderWord(word) {
-//     document.getElementById("word").innerHTML = word;
-// }
-
-// function playerList(){
-//   var  playerList=[]
-//    for(var i=0;i<game.length;i++){
-//        for(var k=0;k<2;k++){
-//        playerList.push(game[i].gamePlayer[k])
-//        }
-//    } 
-//    console.log(playerList)
-// }
-
-// function totalWin(){
-//     var list=new Map();
-//     for(var j=0;j<this.playerList.length;j++){
-//         for(var k=0;k<this.game[j].gamePlayer.length;k++){
-//             list.set(game[j].gamePlayer[k].player.email, game[j].gamePlayer[k].score)
-//         }
-//     } 
-// }
-
-// function total(wins,lost,tie){
-//   var total= (wins*1)+(tie*0.5)-(lost*1);
-//   return total;
-// }
-
-// function ornek(){
-//     var  playerList=[]
-//     for(var i=0;i<game.length;i++){
-//         for(var k=0;k<2;k++){
-//             if(playerList.indexOf(game[i].gamePlayer[k].player.id)===-1){ //playerList in icinde bu playerid yoksa
-//                   playerList.push(game[i].gamePlayer)       //playerListte ekle
-//             }
-//             else{
-//                 (playerList.find(game[i].gamePlayer[k].player.id)).score.wins + game[i].gamePlayer[k].player.score.wins;// eger varsa bu playerListteki kisinin 
-//             }                                                                       //wins ile digerini topla
-//         }
-//     }
-//     console.log(playerList)
-// }
-
-
-// key: hasan@gmailcom     value: {w=1, l=0, t=1}
-// key: hasan@gmailcom     value: {w=1, l=1, t=0}
+// key: burcu@gmailcom     value: {w=1, l=0, t=1}
+// key: burcu@gmailcom     value: {w=1, l=1, t=0}
 
 var map = new Map();
 function leaderboard(response){
-
     response.forEach(g => {
         g.gamePlayer.forEach(gp => {
             if(!map.has(gp.player.email)){
@@ -104,7 +58,7 @@ function leaderboard(response){
                 score.wins = score.wins + gp.score.wins; 
                 score.loses = score.loses + gp.score.loses; 
                 score.ties = score.ties + gp.score.ties; 
-
+                
                 scoreCalculation(score);
 
                 map.set(gp.player.email, score);
@@ -119,8 +73,13 @@ function leaderboard(response){
 }
 
 function scoreCalculation(obj){
+    if(obj.wins!=0||obj.loses!=0||obj.ties!=0){
     var total= (obj.wins*1)+(obj.ties*0.5)-(obj.loses*1);
     obj.score = total;
+   }
+   else{
+       obj.score="playing"
+   }
 }
 
 var scoreHeader=["Player","Won","Lost","Tied","Total"];
@@ -164,4 +123,4 @@ function fillCell(){
         i = i + 2;
     }
 
-}
+}   

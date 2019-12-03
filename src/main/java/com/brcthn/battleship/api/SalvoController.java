@@ -5,13 +5,15 @@ import com.brcthn.battleship.persistance.dto.*;
 import com.brcthn.battleship.persistance.entity.*;
 import com.brcthn.battleship.persistance.repository.GamePlayerRepository;
 import com.brcthn.battleship.persistance.repository.GameRepository;
+import com.brcthn.battleship.persistance.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +23,13 @@ public class SalvoController {
     private GameRepository gameRepository;
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
+
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PlayerRepository playerRepository;
 
     @GetMapping("/games")
     public List<GameDto> getAll() {
@@ -106,4 +115,41 @@ public class SalvoController {
 
         return gamePlayerPersonDto;
     }
+
+
+
+    @RequestMapping(value = "/player", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(@RequestParam String email, @RequestParam String password) {
+              if(email.isEmpty()){
+                  return new ResponseEntity<>("No email given", HttpStatus.FORBIDDEN);
+              }
+
+        if (playerRepository.findByEmail(email) !=  null) {
+            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+        }
+
+        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public HttpStatus login(@RequestParam String email, @RequestParam String password) {
+        if(email.isEmpty()){
+            return HttpStatus.FORBIDDEN;
+        }
+
+        Player p = playerRepository.findByEmail(email);
+
+        if (p ==  null) {
+            return HttpStatus.FORBIDDEN;
+        }
+
+        if(p.getPassword().equals(passwordEncoder.encode(password))){
+            return HttpStatus.OK;
+        } else {
+            return HttpStatus.FORBIDDEN;
+        }
+    }
+
 }

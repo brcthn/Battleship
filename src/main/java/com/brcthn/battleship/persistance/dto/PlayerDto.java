@@ -5,6 +5,15 @@ public class PlayerDto {
     private String email;
     private String firstName;
     private String lastName;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

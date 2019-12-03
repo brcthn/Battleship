@@ -40,16 +40,20 @@ public class Player {
         this.id = id;
     }
 
-    public Player(String firstName, String lastName, String userName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
+    public Player( String email,  String password) {
+        //this.firstName = firstName;
+//        this.lastName = lastName;
+       // this.userName = userName;
         this.email = email;
-        this.password = password;
+     this.password = password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {
