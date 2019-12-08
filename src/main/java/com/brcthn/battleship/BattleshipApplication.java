@@ -294,6 +294,7 @@ public class BattleshipApplication extends SpringBootServletInitializer{
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(email -> {
+            System.out.println(email);
             Player player = playerRepository.findByEmail(email);
             if (player != null) {
                 return new User(player.getEmail(), player.getPassword(),
@@ -304,66 +305,59 @@ public class BattleshipApplication extends SpringBootServletInitializer{
         });
     }
 }
+
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-//                .antMatchers("/api/games").permitAll()
-//                .antMatchers("/api/leader_board").permitAll()
-//
-//
-//
-//                .antMatchers("/web/games.js").permitAll()
-//                .antMatchers("/web/game.css").permitAll()
-//                .antMatchers("/web/games.html").permitAll()
-//                .antMatchers("/web/game.html").permitAll()
-//                .antMatchers("/web/game.js").permitAll()
-//                .antMatchers("/web/game.css").permitAll()
-//
-//                .antMatchers("/web/index.html").permitAll()
-//                .antMatchers("/web/main.js").permitAll()
-//                .antMatchers("/web/index.html").permitAll()
-//                .antMatchers("/api/players").permitAll()
-//                .antMatchers("/api/game_view/*").hasAnyAuthority("USER")
-//                .antMatchers("/rest/*").permitAll()
-                .anyRequest().fullyAuthenticated()
-                .and()
-                .formLogin();
-//                .usernameParameter("email")
-//                .passwordParameter("password")
-//                .loginPage("/api/login");
-//        http.logout().logoutUrl("/api/logout");
 
-//        //turn off checking for CSRF tokens
-//        http.csrf().disable();
-//        //if user is not authenticated, just send an authentication failure response
-//        http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-//
-//        //if login is successful, just clear the flags asking for authentication
-//        http.formLogin().successHandler((request, response, authentication) -> clearAuthenticationAttribute(request));
-//
-//        //if login fails, just send an authentication failure response
-//        http.formLogin().failureHandler((request, response, exception) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-//
-//        //if logout is successful, just send a success response
-//        http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+        //turn off checking for CSRF tokens
+        http.csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/web/games.js").permitAll()
+                .antMatchers("/web/game.css").permitAll()
+                .antMatchers("/web/games.html").permitAll()
+                .antMatchers("/web/game.html").permitAll()
+                .antMatchers("/web/game.js").permitAll()
+                .antMatchers("/web/game.css").permitAll()
+                .antMatchers("/web/index.html").permitAll()
+                .antMatchers("/web/main.js").permitAll()
+                .antMatchers("/web/index.html").permitAll()
+
+                .antMatchers("/api/login*").permitAll()
+                .antMatchers("/api/games").hasAnyAuthority("USER")
+                .antMatchers("/api/leader_board").hasAnyAuthority("USER")
+                .antMatchers("/api/players").hasAnyAuthority("USER")
+                .antMatchers("/api/game_view/*").hasAnyAuthority("USER")
+                .antMatchers("/rest/*").permitAll()
+
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .loginPage("/api/login");
+                 http.logout().logoutUrl("/api/logout");
+
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+               ;
+
+        //if user is not authenticated, just send an authentication failure response
+        http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+
+        //if login is successful, just clear the flags asking for authentication
+        http.formLogin().successHandler((request, response, authentication) -> clearAuthenticationAttribute(request));
+
+        //if login fails, just send an authentication failure response
+        http.formLogin().failureHandler((request, response, exception) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+
+        //if logout is successful, just send a success response
+        http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 
     }
-//        @Bean
-//        @Override
-//        public UserDetailsService userDetailsService() {
-//            UserDetails user =
-//                    User.withDefaultPasswordEncoder()
-//                            .username("user")
-//                            .password("password")
-//                            .roles("USER")
-//                            .build();
-//
-//            return new InMemoryUserDetailsManager(user);
-//        }
-
 
     private void clearAuthenticationAttribute(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -372,4 +366,3 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 }
-

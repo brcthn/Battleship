@@ -82,7 +82,7 @@ public class SalvoController {
         for (GamePlayer gp : game.getGamePlayers()) {
             GamePlayerDto gamePlayerDto = new GamePlayerDto();
             gamePlayerDto.setId(gp.getId());
-
+            
             PlayerDto playerDto = new PlayerDto();
             playerDto.setId(gp.getPlayer().getId());
             playerDto.setEmail(gp.getPlayer().getEmail());
@@ -92,17 +92,18 @@ public class SalvoController {
 
             gamePlayerList.add(gamePlayerDto);
         }
-        List<ShipDto>shipList=new ArrayList<>();
-        for (Ship s:gamePlayer.getShips()) {
-          ShipDto shipDto=new ShipDto();
-          shipDto.setShipType(s.getType());
-          shipDto.setShips(s.getLocations());
-          shipList.add(shipDto);
+        List<ShipDto> shipList = new ArrayList<>();
+        for (Ship s : gamePlayer.getShips()) {
+            ShipDto shipDto = new ShipDto();
+            shipDto.setShipType(s.getType());
+            shipDto.setShips(s.getLocations());
+            shipList.add(shipDto);
 
-        } List<SalvoDto>salvoList=new ArrayList<>();
-        for(GamePlayer gp: game.getGamePlayers()) {
+        }
+        List<SalvoDto> salvoList = new ArrayList<>();
+        for (GamePlayer gp : game.getGamePlayers()) {
             for (Salvo s : gp.getSalvoes()) {
-                SalvoDto salvoDto=new SalvoDto();
+                SalvoDto salvoDto = new SalvoDto();
                 salvoDto.setTurn(s.getTurnNumber());
                 salvoDto.setPlayer(gp.getPlayer().getId());
                 salvoDto.setLocations(s.getLocation());
@@ -115,41 +116,19 @@ public class SalvoController {
 
         return gamePlayerPersonDto;
     }
-
-
-
+    
     @RequestMapping(value = "/player", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestParam String email, @RequestParam String password) {
-              if(email.isEmpty()){
-                  return new ResponseEntity<>("No email given", HttpStatus.FORBIDDEN);
-              }
+        if (email.isEmpty()) {
+            return new ResponseEntity<>("No email given", HttpStatus.FORBIDDEN);
+        }
 
-        if (playerRepository.findByEmail(email) !=  null) {
+        if (playerRepository.findByEmail(email) != null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
         playerRepository.save(new Player(email, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public HttpStatus login(@RequestParam String email, @RequestParam String password) {
-        if(email.isEmpty()){
-            return HttpStatus.FORBIDDEN;
-        }
-
-        Player p = playerRepository.findByEmail(email);
-
-        if (p ==  null) {
-            return HttpStatus.FORBIDDEN;
-        }
-
-        if(p.getPassword().equals(passwordEncoder.encode(password))){
-            return HttpStatus.OK;
-        } else {
-            return HttpStatus.FORBIDDEN;
-        }
     }
 
 }
