@@ -1,63 +1,48 @@
-
-
-// function fetchLogin() {
-//     fetch('/api/login', {
-//       credentials: 'include',
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/x-www-form-urlencoded'
-//       },
-//       body: `username=${ form[0].value }&password=${ form[1].value }`,
-//     }).then(function (json) {
-//
-//       console.log(json)
+// var data=0;
+// function loginFetch(){
+//     const email = document.getElementById("username").value
+//     const password = document.getElementById("password").value
+    
+//    fetch("http://localhost:8080/api/login?"+"email="+email+"&"+"password="+password,{
+//    method:'POST'})
+//    .then(function(response){
+//       console.log("================> " + response.status);
+//       if(response.status==200){
+//         //redirect
+//         window.location.href = "http://localhost:8080/web/games.html";
+//       }else{
+//       alert("ad,lsf,")
+//       }
+//     }).catch(function(error){
+//       console.log("Request failed: " + error.message);
 //     })
-//   }
-//
-//   function fetchMike() {
-//     let form = document.getElementById('login-form');
-//     fetch('/api/login', {
-//       credentials: 'include',
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/x-www-form-urlencoded'
-//       },
-//       body: `username=${ form["username"].value }&password=${ form["password"].value }`,
-//     }).then(function () {
-//       window.location.replace("/web/games.html");
-//
+// }
+
+
+// function login() {
+//     var form = document.getElementById('login-form');
+
+//   $.post("/api/login", {
+//       username: form["username"].value,
+//       password: form["password"].value
 //     })
-//   }
-  
+//     .done(function () {
+//       console.log("logged in!");
+//     })
+//     .fail(function () {
+//       console.log("failed to log in!");
+//     });
+// }
 
 
+// function logout() {
 
-function login() {
-    var form = document.getElementById('login-form');
-
-  $.post("/api/login", {
-      username: form["username"].value,
-      password: form["password"].value
-    })
-    .done(function () {
-      console.log("logged in!");
-    })
-    .fail(function () {
-      console.log("failed to log in!");
-    });
-}
-
-
-function logout() {
-
-  $.post("/api/logout")
-    .done(function () {
-        console.log("logged in!");
-      })
-    .fail(function () {
-        console.log("failed to log in!");});
-}
+//   $.post("/api/logout")
+//     .done(function () {
+//         console.log("logged in!");
+//       })
+//     .fail(function () {
+//         console.log("failed to log in!");});
+// }
 
   

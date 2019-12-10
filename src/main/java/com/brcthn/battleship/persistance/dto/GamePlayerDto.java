@@ -9,7 +9,6 @@ public class GamePlayerDto {
     private ScoreDto score;
 
 
-
     public PlayerDto getPlayer() {
         return player;
     }

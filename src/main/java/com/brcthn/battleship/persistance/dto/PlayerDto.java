@@ -5,15 +5,15 @@ public class PlayerDto {
     private String email;
     private String firstName;
     private String lastName;
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    private Long gpid;
+//
+//    public Long getGpid() {
+//        return gpid;
+//    }
+//
+//    public void setGpid(Long gpid) {
+//        this.gpid = gpid;
+   // }
 
     public Long getId() {
         return id;

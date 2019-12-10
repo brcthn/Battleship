@@ -1,4 +1,53 @@
 var game=[];
+
+var data=0;
+function loginFetch(){
+    const email = document.getElementById("username").value
+    const password = document.getElementById("password").value
+    
+   fetch("http://localhost:8080/api/login?"+"email="+email+"&"+"password="+password,{
+   method:'POST'})
+   .then(function(response){
+      if(response.status==200){
+        //redirect
+        window.location.href = "http://localhost:8080/web/games.html";
+      }else{
+      alert("ad,lsf,")
+      }
+    }).catch(function(error){
+      console.log("Request failed: " + error.message);
+    })
+}
+function logoutFetch(){
+    fetch("http://localhost:8080/api/logout?")
+    .then(function(response){
+        console.log("===================>"+response)
+        if(response.status==200){
+            window.location.href = "http://localhost:8080/web/index.html";
+        }
+    else{
+        alert("eror")
+    }}).catch(function(error){
+        console.log("Request failed: " + error.message);
+    })
+}
+
+function signup(){
+    const email = document.getElementById("username").value
+    const password = document.getElementById("password").value
+    
+    fetch("http://localhost:8080/api/players?"+"email="+email +"&"+"password="+ password ,{
+        method:'POST'
+    }).then(function(response){
+        if(response.status==403){
+            alert(response.status)
+        }
+    }).catch(function(error){
+        console.log("Request failed: " + error.message);
+      })
+}
+
+
 fetch(
     "http://localhost:8080/api/games"
     )
@@ -8,8 +57,9 @@ fetch(
           game=response;
           console.log(game);
           renderList(game);
+          playerName(game.player.firstName,game.player.lastName);
         //   renderWord("information") 
-          leaderboard(response);
+          leaderboard(response.games);
           renderHeaders();
           renderRows();
         //   insideCell()
@@ -19,6 +69,16 @@ fetch(
             console.log("Request failed: " + error.message);
         }   
 )
+
+
+
+
+
+
+function playerName(firstName,lastName){
+document.getElementById("playerName").innerHTML=firstName+ " "+ lastName;
+}
+
 function getItemHtml(game){ 
    
 var emailList= "";
@@ -30,11 +90,12 @@ for(var i=0;i<game.gamePlayer.length;i++){
 }
 
 function getListHtml(data) {
-    return data.map(getItemHtml).join("");
+    return data.games.map(getItemHtml).join("");
 }
 
 function renderList(data) {
     var html = getListHtml(data);
+
     document.getElementById("list").innerHTML = html;
 }
 // key: burcu@gmailcom     value: {w=1, l=0, t=1}

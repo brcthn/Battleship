@@ -31,3 +31,15 @@
 #gameTableSalvo > tbody > tr > th  {
     border:1.9px solid #005b96;
 }
+#login { 
+margin-top:150px;
+}
+#username ,#password{
+    margin-right:80px
+}
+#loginButton{
+    margin-top:20px;
+}
+#signupButton{
+    margin-top:20px; 
+}

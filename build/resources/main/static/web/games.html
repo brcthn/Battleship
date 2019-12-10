@@ -11,6 +11,20 @@
 
 <body>
     <div class="row">
+        <div class="font-italic font-weight-bold text-uppercase  col-xl-6 offset-xl-6">
+    <p id="playerName"></p>
+    </div>
+    </div>
+       <div class="row">
+           <div class="col-xl-1 offset-xl-11">
+         <form id="logout-form" onsubmit="return logoutFetch">
+        <button type="text" onclick="logoutFetch()" class="btn btn-dark btn-sm">Log out </button>
+    </div>
+            </form>
+
+        </div>
+
+    <div class="row">
         <div class="col-xl-6 offset-xl-3 ">
             <h4 class="font-italic" id="text">Game Information :</h4>
             <ol class="list-group" id="list"></ol>
@@ -28,6 +42,7 @@
         </div>
     </div>
     <script src="games.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>

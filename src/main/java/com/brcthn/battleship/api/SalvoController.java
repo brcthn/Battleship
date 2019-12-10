@@ -9,6 +9,9 @@ import com.brcthn.battleship.persistance.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +35,21 @@ public class SalvoController {
     private PlayerRepository playerRepository;
 
     @GetMapping("/games")
-    public List<GameDto> getAll() {
+    public CurrentPlayerDto getAll() {
         List<Game> all = gameRepository.findAll();
         List<GameDto> results = new ArrayList<>();
+
+        CurrentPlayerDto currentPlayerDto = new CurrentPlayerDto();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Player loggedUser = currentUser(authentication);
+        PlayerDto loggedUserDto = new PlayerDto();
+        loggedUserDto.setFirstName(loggedUser.getFirstName());
+        loggedUserDto.setLastName(loggedUser.getLastName());
+        loggedUserDto.setId(loggedUser.getId());
+        loggedUserDto.setEmail(loggedUser.getEmail());
+
+        currentPlayerDto.setPlayer(loggedUserDto);
+
         for (Game game : all) {
             GameDto gameDto = new GameDto();
             gameDto.setId(game.getId());
@@ -67,7 +82,14 @@ public class SalvoController {
             gameDto.setGamePlayer(gamePlayerList);
             results.add(gameDto);
         }
-        return results;
+
+        currentPlayerDto.setGames(results);
+        return currentPlayerDto;
+    }
+
+    @PostMapping("/games")
+    public CurrentPlayerDto createGame(){
+
     }
 
     @RequestMapping(value = "/game_view/{nn}", method = RequestMethod.GET)
@@ -84,6 +106,7 @@ public class SalvoController {
             gamePlayerDto.setId(gp.getId());
             
             PlayerDto playerDto = new PlayerDto();
+
             playerDto.setId(gp.getPlayer().getId());
             playerDto.setEmail(gp.getPlayer().getEmail());
             playerDto.setFirstName(gp.getPlayer().getFirstName());
@@ -116,8 +139,17 @@ public class SalvoController {
 
         return gamePlayerPersonDto;
     }
-    
-    @RequestMapping(value = "/player", method = RequestMethod.POST)
+
+    private Player currentUser(Authentication authentication){
+        if( authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+        return playerRepository.findByEmail(authentication.getName());
+    }
+
+
+
+    @RequestMapping(value = "/players", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestParam String email, @RequestParam String password) {
         if (email.isEmpty()) {
             return new ResponseEntity<>("No email given", HttpStatus.FORBIDDEN);

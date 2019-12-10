@@ -10,6 +10,8 @@ public class GameDto {
     private List<GamePlayerDto> gamePlayer;
     private String created;
 
+
+
     public void setCreated(String created) {
         this.created = created;
     }

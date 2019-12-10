@@ -324,7 +324,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/main.js").permitAll()
                 .antMatchers("/web/index.html").permitAll()
-
+                .antMatchers("/api/players*").permitAll()
                 .antMatchers("/api/login*").permitAll()
                 .antMatchers("/api/games").hasAnyAuthority("USER")
                 .antMatchers("/api/leader_board").hasAnyAuthority("USER")
@@ -339,11 +339,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginPage("/api/login");
                  http.logout().logoutUrl("/api/logout");
-
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-               ;
 
         //if user is not authenticated, just send an authentication failure response
         http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED));
