@@ -12,7 +12,7 @@ function loginFetch(){
         //redirect
         window.location.href = "http://localhost:8080/web/games.html";
       }else{
-      alert("ad,lsf,")
+      alert(response.status)
       }
     }).catch(function(error){
       console.log("Request failed: " + error.message);
@@ -21,7 +21,6 @@ function loginFetch(){
 function logoutFetch(){
     fetch("http://localhost:8080/api/logout?")
     .then(function(response){
-        console.log("===================>"+response)
         if(response.status==200){
             window.location.href = "http://localhost:8080/web/index.html";
         }
@@ -48,6 +47,27 @@ function signup(){
 }
 
 
+ function createGameFetch(){
+     const email=game.player.email
+     
+     fetch("http://localhost:8080/api/games?username="+email,{
+        method:'POST'
+    }).then(function(response){
+        var data=response.json();
+        if(response.status==201){
+            // window.location.href= "http://localhost:8080/web/game?gp=6"+data
+            return data;
+            alert("Player save in the game");
+        }
+    }).then(function(a){
+         window.location.href= "http://localhost:8080/web/game?gp="+a
+    }).catch(function(error){
+        console.log("Request failed: " + error.message);
+    })
+
+}
+
+
 fetch(
     "http://localhost:8080/api/games"
     )
@@ -56,38 +76,45 @@ fetch(
         }).then(function(response){
           game=response;
           console.log(game);
-          renderList(game);
-          playerName(game.player.firstName,game.player.lastName);
+           renderList(game);
+           playerName(game.player.firstName,game.player.lastName);
         //   renderWord("information") 
           leaderboard(response.games);
           renderHeaders();
           renderRows();
         //   insideCell()
         fillCell();
+        // linkForJoinGame();
         })
         .catch(function (error) {
             console.log("Request failed: " + error.message);
         }   
 )
 
-
-
-
-
+function linkForJoinGame(n){
+    for(var k=0;k<n.gamePlayer.length;k++){
+        if( n.gamePlayer[k].player.id==game.player.id){
+            var str="join"
+            var result = str.link("http://localhost:8080/web/game.html?gp="+game.player.id);
+            return result;
+        }else{
+            return " ";
+        }
+    }
+}
 
 function playerName(firstName,lastName){
 document.getElementById("playerName").innerHTML=firstName+ " "+ lastName;
 }
 
 function getItemHtml(game){ 
-   
 var emailList= "";
 for(var i=0;i<game.gamePlayer.length;i++){
     emailList=emailList+(game.gamePlayer[i].player.email + ",");  
-    console.log(game)
+}  
+ return "<li class='list-group-item'>" + game.id + "&nbsp&nbsp&nbsp&nbsp"+game.created+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+linkForJoinGame(game)+"</li>"   
 }
-   return "<li class='list-group-item'>" + game.id + "&nbsp&nbsp&nbsp&nbsp"+game.created+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList+ "</li>"   
-}
+
 
 function getListHtml(data) {
     return data.games.map(getItemHtml).join("");
@@ -95,7 +122,6 @@ function getListHtml(data) {
 
 function renderList(data) {
     var html = getListHtml(data);
-
     document.getElementById("list").innerHTML = html;
 }
 // key: burcu@gmailcom     value: {w=1, l=0, t=1}
@@ -105,6 +131,7 @@ var map = new Map();
 function leaderboard(response){
     response.forEach(g => {
         g.gamePlayer.forEach(gp => {
+       
             if(!map.has(gp.player.email)){
 
                 scoreCalculation(gp.score);
@@ -129,7 +156,7 @@ function leaderboard(response){
         });
     });
     for (let [email,score] of map.entries()) {
-        console.log(email +":"+ JSON.stringify(score));
+       // console.log(email +":"+ JSON.stringify(score));
     }
 }
 

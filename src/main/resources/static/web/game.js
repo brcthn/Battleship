@@ -9,6 +9,9 @@ console.log("http://localhost:8080/api/game_view/"+myParam)
 
 fetch("http://localhost:8080/api/game_view/"+myParam
 ).then(function(response){
+    if(response.status==401){
+        alert("401")
+    }
     return response.json();
 }).then(function(response){
   info=response;
