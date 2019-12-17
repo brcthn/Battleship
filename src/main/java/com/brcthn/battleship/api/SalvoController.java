@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -178,8 +175,8 @@ public class SalvoController {
         if (username.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.UNAUTHORIZED);
         }
-        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        Player loggedUser=currentUser(authentication);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Player loggedUser = currentUser(authentication);
 
         if (loggedUser.getEmail().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -215,37 +212,59 @@ public class SalvoController {
     @RequestMapping(path = "/game/{nn}/players", method = RequestMethod.POST)
     public ResponseEntity<Object> joinGame(@PathVariable("nn") long gameId) {
 
-
-        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        Player loggedUser=currentUser(authentication);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Player loggedUser = currentUser(authentication);
 
         if (loggedUser.getEmail().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
-         Game currentGame=  gameRepository.findById(gameId).get();
+        Game currentGame = gameRepository.findById(gameId).get();
         if (currentGame == null) {
             return new ResponseEntity<>("No such game ", HttpStatus.FORBIDDEN);
         }
 
-
         if (currentGame.getGamePlayers().size() == 2) {
-                return new ResponseEntity<>("Game is full ", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Game is full ", HttpStatus.FORBIDDEN);
         }
-
-            //gamePlayer
-            GamePlayer newGamePlayer = new GamePlayer();
-            newGamePlayer.setPlayer(loggedUser);
-            newGamePlayer.setGame(currentGame);
-            gamePlayerRepository.save(newGamePlayer);
-            //score
-            Score newScore = new Score();
-            newScore.setGame(currentGame);
-            newScore.setPlayer(loggedUser);
-            scoreRepository.save(newScore);
-            Long id = newGamePlayer.getId();
-            return new ResponseEntity<>(id, HttpStatus.CREATED);
+        //gamePlayer
+        GamePlayer newGamePlayer = new GamePlayer();
+        newGamePlayer.setPlayer(loggedUser);
+        newGamePlayer.setGame(currentGame);
+        gamePlayerRepository.save(newGamePlayer);
+        //score
+        Score newScore = new Score();
+        newScore.setGame(currentGame);
+        newScore.setPlayer(loggedUser);
+        scoreRepository.save(newScore);
+        Long id = newGamePlayer.getId();
+        return new ResponseEntity<>(id, HttpStatus.CREATED);
 
     }
+
+    @RequestMapping(path = "/games/players/{gamePlayerId}/ships", method = RequestMethod.POST)
+    public ResponseEntity<Object> createShip(@PathVariable("gamePlayerId") long gamePlayerId, @RequestBody Set<Ship> shipList) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Player userLogged = currentUser(authentication);
+        if (userLogged.getEmail().isEmpty()) {
+            return new ResponseEntity<>("There is no current user logged in", HttpStatus.UNAUTHORIZED);
+        }
+        GamePlayer gamePlayer = gamePlayerRepository.findById(gamePlayerId).get();
+        if (gamePlayer == null) {
+            return new ResponseEntity<>("There is no game player with the given ID", HttpStatus.UNAUTHORIZED);
+        }
+        if (userLogged.getId() != gamePlayer.getPlayer().getId()) {
+            return new ResponseEntity<>("The current user is not the game player the ID references", HttpStatus.UNAUTHORIZED);
+        }
+        if (gamePlayer.getShips() != null && gamePlayer.getShips().size() > 0) {
+            return new ResponseEntity<>("The user already has ships placed", HttpStatus.FORBIDDEN);
+        }
+
+
+        gamePlayer.setShips(shipList);
+
+        return new ResponseEntity<>("", HttpStatus.CREATED);
+    }
+
 
 }
