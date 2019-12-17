@@ -18,6 +18,7 @@ function loginFetch(){
       console.log("Request failed: " + error.message);
     })
 }
+
 function logoutFetch(){
     fetch("http://localhost:8080/api/logout?")
     .then(function(response){
@@ -46,7 +47,6 @@ function signup(){
       })
 }
 
-
  function createGameFetch(){
      const email=game.player.email
      
@@ -55,18 +55,16 @@ function signup(){
     }).then(function(response){
         var data=response.json();
         if(response.status==201){
-            // window.location.href= "http://localhost:8080/web/game?gp=6"+data
+            alert("Player save in the new game")
             return data;
-            alert("Player save in the game");
         }
-    }).then(function(a){
-         window.location.href= "http://localhost:8080/web/game?gp="+a
+    }).then(function(n){
+         window.location.href= "http://localhost:8080/web/game?gp="+n
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })
 
 }
-
 
 fetch(
     "http://localhost:8080/api/games"
@@ -91,17 +89,76 @@ fetch(
         }   
 )
 
+function reRender(){
+
+    fetch(
+        "http://localhost:8080/api/games"
+        )
+            .then(function(response){
+                return response.json();
+            }).then(function(response){
+              game=response;
+              console.log(game);
+               renderList(game);
+                playerName(game.player.firstName,game.player.lastName);
+            // //   renderWord("information") 
+               leaderboard(response.games);
+               renderHeaders();
+              renderRows();
+            //   insideCell()
+             fillCell();
+            linkForJoinGame();
+            })
+            .catch(function (error) {
+                console.log("Request failed: " + error.message);
+            }   
+    )
+}
+
+
 function linkForJoinGame(n){
     for(var k=0;k<n.gamePlayer.length;k++){
         if( n.gamePlayer[k].player.id==game.player.id){
-            var str="join"
+            var str="Return Game"
             var result = str.link("http://localhost:8080/web/game.html?gp="+game.player.id);
             return result;
-        }else{
-            return " ";
-        }
+        }       
     }
+
+    return "<button onclick='joinGame("+n.id+")'>"+"Join"+"</button>"
 }
+
+
+
+ var gpId;
+ var res;
+function joinGame(n){
+    fetch("http://localhost:8080/api/game/"+n+"/players",{
+        method:'POST'
+    }).then(function(response){
+        res=response.status;
+        console.log(res+" res1")
+        gpId=response.json();
+            return gpId;
+        } )
+      .then(function(gpId){
+        console.log(res)
+        console.log(gpId+"-----2----")
+        if(res==201){
+            alert("Player save in the new game")
+             window.location.href= "http://localhost:8080/web/game.html?gp="+gpId
+        }
+    
+        
+        
+   }).catch(function(error){
+    if(res==403){
+        alert("Game is full")
+    }
+    console.log("Request failed: " + error.message);})
+}
+
+
 
 function playerName(firstName,lastName){
 document.getElementById("playerName").innerHTML=firstName+ " "+ lastName;
@@ -112,9 +169,11 @@ var emailList= "";
 for(var i=0;i<game.gamePlayer.length;i++){
     emailList=emailList+(game.gamePlayer[i].player.email + ",");  
 }  
- return "<li class='list-group-item'>" + game.id + "&nbsp&nbsp&nbsp&nbsp"+game.created+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+linkForJoinGame(game)+"</li>"   
+ return "<li class='list-group-item'>" + game.id 
+ + "&nbsp&nbsp&nbsp&nbsp"+game.created
+ +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList
+ +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+linkForJoinGame(game)+"</li>"   
 }
-
 
 function getListHtml(data) {
     return data.games.map(getItemHtml).join("");
@@ -193,13 +252,12 @@ function getRowsHtml(){
     return Array.from(map).map(function(){
         return "<tr>"+getColumnsHtml()+"<tr>"}).join("");
 }
-
 function renderRows(){
     var html=getRowsHtml();
     document.getElementById("scoreBody").innerHTML=html;
 }
 
- 
+
 function fillCell(){
     var i = 1;
     for (let [email,score] of map.entries()) {

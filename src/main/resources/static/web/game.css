@@ -43,3 +43,11 @@ margin-top:150px;
 #signupButton{
     margin-top:20px; 
 }
+#logoutButton{
+    background-color:rgb(216, 212, 212);
+    color:black;
+}
+#createButton{
+    background-color:rgb(216, 212, 212);
+    color:black;
+}

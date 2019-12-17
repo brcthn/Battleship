@@ -72,13 +72,15 @@ function indexRow(n){
 function getEmail(){
   var email=""; 
     for(var i=0;i< info.gamePlayers.length;i++){ 
-        if(info.id == info.gamePlayers[i].player.id){
+        if(info.id == info.gamePlayers[i].id){
             email = info.gamePlayers[i].player.email;
             document.getElementById("playerName1").innerHTML=info.gamePlayers[i].player.firstName+" "+info.gamePlayers[i].player.lastName
             document.getElementById("gameinformation1").innerHTML=email +" "+ "(you)" 
         }
         else{
             email = info.gamePlayers[i].player.email;
+
+            console.log(email)
             document.getElementById("playerName2").innerHTML=info.gamePlayers[i].player.firstName+" "+info.gamePlayers[i].player.lastName
             document.getElementById("gameinformation2").innerHTML=email; 
         }

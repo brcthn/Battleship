@@ -63,7 +63,6 @@ function signup(){
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })
-
 }
 
 fetch(
@@ -92,13 +91,37 @@ fetch(
 function linkForJoinGame(n){
     for(var k=0;k<n.gamePlayer.length;k++){
         if( n.gamePlayer[k].player.id==game.player.id){
-            var str="join"
-            var result = str.link("http://localhost:8080/web/game.html?gp="+game.player.id);
+            var str="Return Game"
+            var result = str.link("http://localhost:8080/web/game.html?gp="+n.gamePlayer[k].id);
             return result;
-        }else{
-            return " ";
-        }
+        }       
     }
+    return "<button onclick='joinGame("+n.id+")'>"+"Join"+"</button>"
+}
+
+ var gpId;
+ var res;
+function joinGame(n){
+    fetch("http://localhost:8080/api/game/"+n+"/players",{
+        method:'POST'
+    }).then(function(response){
+        res=response.status;
+        console.log(res+" res1")
+        gpId=response.json();
+            return gpId;
+        } )
+      .then(function(gpId){
+        console.log(res)
+        console.log(gpId+"-----2----")
+        if(res==201){
+            alert("Player save in the new game")
+             window.location.href= "http://localhost:8080/web/game.html?gp="+gpId
+        }
+   }).catch(function(error){
+    if(res==403){
+        alert("Game is full")
+    }
+    console.log("Request failed: " + error.message);})
 }
 
 function playerName(firstName,lastName){
@@ -110,13 +133,15 @@ var emailList= "";
 for(var i=0;i<game.gamePlayer.length;i++){
     emailList=emailList+(game.gamePlayer[i].player.email + ",");  
 }  
- return "<li class='list-group-item'>" + game.id + "&nbsp&nbsp&nbsp&nbsp"+game.created+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+linkForJoinGame(game)+"</li>"   
+ return "<li class='list-group-item'>" + game.id 
+ + "&nbsp&nbsp&nbsp&nbsp"+game.created
+ +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+ emailList
+ +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+linkForJoinGame(game)+"</li>"   
 }
 
 function getListHtml(data) {
     return data.games.map(getItemHtml).join("");
 }
-
 function renderList(data) {
     var html = getListHtml(data);
     document.getElementById("list").innerHTML = html;
@@ -171,7 +196,6 @@ var scoreHeader=["Player","Won","Lost","Tied","Total"];
 
 // for header
 
-
 function getHeaderHtml(){
     return "<tr>"+ scoreHeader.map(function(header){
         return "<th>"+header+"</th>";}).join("")+"</tr>";
@@ -194,7 +218,6 @@ function renderRows(){
     var html=getRowsHtml();
     document.getElementById("scoreBody").innerHTML=html;
 }
-
 
 function fillCell(){
     var i = 1;

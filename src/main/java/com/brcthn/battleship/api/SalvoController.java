@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -177,6 +178,14 @@ public class SalvoController {
         if (username.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.UNAUTHORIZED);
         }
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        Player loggedUser=currentUser(authentication);
+
+        if (loggedUser.getEmail().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+
 //game
         Game newGame = new Game();
         Date time = new Date();
@@ -185,7 +194,7 @@ public class SalvoController {
         newGame.setCreationData(data);
         gameRepository.save(newGame);
 //player(current user)
-        Player newPlayer=playerRepository.findByEmail(username);
+        Player newPlayer = playerRepository.findByEmail(username);
 
 //gamePlayer
         GamePlayer newGamePlayer = new GamePlayer();
@@ -194,13 +203,49 @@ public class SalvoController {
         playerRepository.save(newPlayer);
         gamePlayerRepository.save(newGamePlayer);
 //score
-        Score newScore= new Score();
+        Score newScore = new Score();
         newScore.setGame(newGame);
         newScore.setPlayer(newPlayer);
         scoreRepository.save(newScore);
-         Long id= newGamePlayer.getId();
+        Long id = newGamePlayer.getId();
 
         return new ResponseEntity<>(id, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(path = "/game/{nn}/players", method = RequestMethod.POST)
+    public ResponseEntity<Object> joinGame(@PathVariable("nn") long gameId) {
+
+
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        Player loggedUser=currentUser(authentication);
+
+        if (loggedUser.getEmail().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+         Game currentGame=  gameRepository.findById(gameId).get();
+        if (currentGame == null) {
+            return new ResponseEntity<>("No such game ", HttpStatus.FORBIDDEN);
+        }
+
+
+        if (currentGame.getGamePlayers().size() == 2) {
+                return new ResponseEntity<>("Game is full ", HttpStatus.FORBIDDEN);
+        }
+
+            //gamePlayer
+            GamePlayer newGamePlayer = new GamePlayer();
+            newGamePlayer.setPlayer(loggedUser);
+            newGamePlayer.setGame(currentGame);
+            gamePlayerRepository.save(newGamePlayer);
+            //score
+            Score newScore = new Score();
+            newScore.setGame(currentGame);
+            newScore.setPlayer(loggedUser);
+            scoreRepository.save(newScore);
+            Long id = newGamePlayer.getId();
+            return new ResponseEntity<>(id, HttpStatus.CREATED);
+
     }
 
 }
