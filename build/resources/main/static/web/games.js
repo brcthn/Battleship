@@ -63,7 +63,6 @@ function signup(){
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })
-
 }
 
 fetch(
@@ -89,46 +88,16 @@ fetch(
         }   
 )
 
-function reRender(){
-
-    fetch(
-        "http://localhost:8080/api/games"
-        )
-            .then(function(response){
-                return response.json();
-            }).then(function(response){
-              game=response;
-              console.log(game);
-               renderList(game);
-                playerName(game.player.firstName,game.player.lastName);
-            // //   renderWord("information") 
-               leaderboard(response.games);
-               renderHeaders();
-              renderRows();
-            //   insideCell()
-             fillCell();
-            linkForJoinGame();
-            })
-            .catch(function (error) {
-                console.log("Request failed: " + error.message);
-            }   
-    )
-}
-
-
 function linkForJoinGame(n){
     for(var k=0;k<n.gamePlayer.length;k++){
         if( n.gamePlayer[k].player.id==game.player.id){
             var str="Return Game"
-            var result = str.link("http://localhost:8080/web/game.html?gp="+game.player.id);
+            var result = str.link("http://localhost:8080/web/game.html?gp="+n.gamePlayer[k].id);
             return result;
         }       
     }
-
     return "<button onclick='joinGame("+n.id+")'>"+"Join"+"</button>"
 }
-
-
 
  var gpId;
  var res;
@@ -148,17 +117,12 @@ function joinGame(n){
             alert("Player save in the new game")
              window.location.href= "http://localhost:8080/web/game.html?gp="+gpId
         }
-    
-        
-        
    }).catch(function(error){
     if(res==403){
         alert("Game is full")
     }
     console.log("Request failed: " + error.message);})
 }
-
-
 
 function playerName(firstName,lastName){
 document.getElementById("playerName").innerHTML=firstName+ " "+ lastName;
@@ -178,7 +142,6 @@ for(var i=0;i<game.gamePlayer.length;i++){
 function getListHtml(data) {
     return data.games.map(getItemHtml).join("");
 }
-
 function renderList(data) {
     var html = getListHtml(data);
     document.getElementById("list").innerHTML = html;
@@ -214,9 +177,9 @@ function leaderboard(response){
             }
         });
     });
-    for (let [email,score] of map.entries()) {
-       // console.log(email +":"+ JSON.stringify(score));
-    }
+    // for (let [email,score] of map.entries()) {
+    //    // console.log(email +":"+ JSON.stringify(score));
+    // }
 }
 
 function scoreCalculation(obj){
@@ -232,7 +195,6 @@ function scoreCalculation(obj){
 var scoreHeader=["Player","Won","Lost","Tied","Total"];
 
 // for header
-
 
 function getHeaderHtml(){
     return "<tr>"+ scoreHeader.map(function(header){
@@ -257,7 +219,6 @@ function renderRows(){
     document.getElementById("scoreBody").innerHTML=html;
 }
 
-
 function fillCell(){
     var i = 1;
     for (let [email,score] of map.entries()) {
@@ -270,3 +231,4 @@ function fillCell(){
     }
 
 }   
+

@@ -3,10 +3,7 @@ package com.brcthn.battleship.api;
 
 import com.brcthn.battleship.persistance.dto.*;
 import com.brcthn.battleship.persistance.entity.*;
-import com.brcthn.battleship.persistance.repository.GamePlayerRepository;
-import com.brcthn.battleship.persistance.repository.GameRepository;
-import com.brcthn.battleship.persistance.repository.PlayerRepository;
-import com.brcthn.battleship.persistance.repository.ScoreRepository;
+import com.brcthn.battleship.persistance.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -37,6 +33,9 @@ public class SalvoController {
 
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    private ShipRepository shipRepository;
 
     @GetMapping("/games")
     public CurrentPlayerDto getAll() {
@@ -128,7 +127,7 @@ public class SalvoController {
         for (Ship s : gamePlayer.getShips()) {
             ShipDto shipDto = new ShipDto();
             shipDto.setShipType(s.getType());
-            shipDto.setShips(s.getLocations());
+            shipDto.setLocations(s.getLocations());
             shipList.add(shipDto);
 
         }
@@ -242,7 +241,7 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/games/players/{gamePlayerId}/ships", method = RequestMethod.POST)
-    public ResponseEntity<Object> createShip(@PathVariable("gamePlayerId") long gamePlayerId, @RequestBody Set<Ship> shipList) {
+    public ResponseEntity<Object> createShip(@PathVariable("gamePlayerId") long gamePlayerId, @RequestBody List<ShipDto> shipList) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Player userLogged = currentUser(authentication);
@@ -260,8 +259,13 @@ public class SalvoController {
             return new ResponseEntity<>("The user already has ships placed", HttpStatus.FORBIDDEN);
         }
 
+        for (ShipDto shipDto:shipList) {
+            Ship ship = new Ship(shipDto.getShipType(), shipDto.getLocations());
+            shipRepository.save(ship);
+            gamePlayer.add(ship);
+        }
 
-        gamePlayer.setShips(shipList);
+        gamePlayerRepository.save(gamePlayer);
 
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }

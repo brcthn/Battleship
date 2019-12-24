@@ -51,3 +51,20 @@ margin-top:150px;
     background-color:rgb(216, 212, 212);
     color:black;
 }
+
+
+#gameTableShip > thead > tr > th{
+    border:1.9px solid black ;
+}
+#gameTableShip > tbody > tr > td{
+    border:1.9px solid black;
+}
+#gameTableShip > tbody > tr > th  {
+    border:1.9px solid black;
+}
+#gameTableShip tr {
+    background-color: transparent;
+    
+ 
+    
+}

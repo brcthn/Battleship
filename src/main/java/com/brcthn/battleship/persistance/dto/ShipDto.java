@@ -5,7 +5,7 @@ import java.util.List;
 public class ShipDto {
 
     private String shipType;
-    private List<String> ships;
+    private List<String> locations;
 
 
     public String getShipType() {
@@ -16,11 +16,11 @@ public class ShipDto {
         this.shipType = shipType;
     }
 
-    public List<String> getShips() {
-        return ships;
+    public List<String> getLocations() {
+        return locations;
     }
 
-    public void setShips(List<String> ships) {
-        this.ships = ships;
+    public void setLocations(List<String> locations) {
+        this.locations = locations;
     }
 }

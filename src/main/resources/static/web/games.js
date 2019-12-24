@@ -177,9 +177,9 @@ function leaderboard(response){
             }
         });
     });
-    for (let [email,score] of map.entries()) {
-       // console.log(email +":"+ JSON.stringify(score));
-    }
+    // for (let [email,score] of map.entries()) {
+    //    // console.log(email +":"+ JSON.stringify(score));
+    // }
 }
 
 function scoreCalculation(obj){
@@ -231,3 +231,4 @@ function fillCell(){
     }
 
 }   
+

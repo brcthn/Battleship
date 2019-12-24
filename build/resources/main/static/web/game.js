@@ -1,6 +1,10 @@
 var number= ["1","2","3","4","5","6","7","8","9","10"]
 var letter= ["A","B","C","D","E","F","G","H","I","J"]
 var info=[];
+var shipHeader=["Type","Lenght"]
+var shipNumber=["1","1","1","1","1"]
+shipType=["Aircraft Carrier","Battleship","Submarine","Destroyer","Patrol Boat"]
+shipLength=["5","4","3","3","2"]
 
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('gp');
@@ -19,6 +23,8 @@ fetch("http://localhost:8080/api/game_view/"+myParam
   getShipLocation();
   getEmail();
   getPlayerSalvo();
+ 
+
 }).catch(function(error){
     console.log("Request failed: " + error.message);
 }
@@ -26,6 +32,10 @@ fetch("http://localhost:8080/api/game_view/"+myParam
 renderHeaders();
 renderRows();
 createSalvoGrid();
+renderHeadersShip();
+renderRowsShip();
+fillCell();
+selectcell();
 
 //map sirayla elemanlari gezer.
 //Ship Grid
@@ -72,13 +82,15 @@ function indexRow(n){
 function getEmail(){
   var email=""; 
     for(var i=0;i< info.gamePlayers.length;i++){ 
-        if(info.id == info.gamePlayers[i].player.id){
+        if(info.id == info.gamePlayers[i].id){
             email = info.gamePlayers[i].player.email;
             document.getElementById("playerName1").innerHTML=info.gamePlayers[i].player.firstName+" "+info.gamePlayers[i].player.lastName
             document.getElementById("gameinformation1").innerHTML=email +" "+ "(you)" 
         }
         else{
             email = info.gamePlayers[i].player.email;
+
+            console.log(email)
             document.getElementById("playerName2").innerHTML=info.gamePlayers[i].player.firstName+" "+info.gamePlayers[i].player.lastName
             document.getElementById("gameinformation2").innerHTML=email; 
         }
@@ -120,3 +132,121 @@ function getPlayerSalvo(){
         }
     }
 }
+//shipTable
+
+// var shipHeader=["Number","Type","Lenght"]
+// var shipType=["1","1","1","1","1"]
+ function getHeaderHtmlShip(){
+     return "<tr><th>Number</th> "+ shipHeader.map(function(shipHeader){
+         return"<th>"+shipHeader+"</th>";}).join("")+"</tr>";
+ }
+ function renderHeadersShip() { 
+    var html = getHeaderHtmlShip();
+    document.getElementById("table-headers-ship").innerHTML = html;
+}
+function getColumnsHtmlShip() {
+    return shipHeader.map(function() {
+       return "<td>" +"" + "</td>";}).join("")
+}
+function getRowsHtmlShip(){
+    return shipNumber.map(function(shipNumber){
+      return "<tr><th>" +shipNumber+"</th>"+ getColumnsHtmlShip()+"</tr>";}).join(""); 
+}
+
+function renderRowsShip() {
+    var html = getRowsHtmlShip();
+    document.getElementById("table-rows-ship").innerHTML = html;
+}
+
+//Ship Information Table
+function fillCell(){
+    var maps = new Map();
+    for(var k=0;k<shipType.length;k++){
+          maps.set(shipType[k],shipLength[k]);
+          console.log(maps)
+    }
+    var i = 1;
+    for (let [shipType,shipLength] of maps.entries()) {
+        document.getElementById("gameTableShip").rows[i].cells[1].innerHTML=shipType;
+        document.getElementById("gameTableShip").rows[i].cells[2].innerHTML=shipLength;
+        i = i + 1;
+    }
+
+}   
+
+
+// putship
+function putShip(){
+const urlParams = new URLSearchParams(window.location.search);
+const gpIdShip = urlParams.get('gp');
+
+    var body= [{ "shipType": "destroyer", "locations": ["A1", "B1", "C1"] }]
+    fetch("http://localhost:8080/api/games/players/"+gpIdShip+"/ships",{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        method:'POST',
+        body:JSON.stringify(body)})
+    .then(function(response){
+       // console.log(response)
+        return response;
+    })
+}
+
+//Get list of rows in the table
+var table = document.getElementById("gameTableShip");
+var rows = table.getElementsByTagName("tr");
+var selectedRow;
+function selectRow(row){
+    if (selectedRow !== undefined) {
+        selectedRow.style.backgroundColor = "transparent";
+    }
+    if(
+    selectedRow=row){
+        
+    selectedRow.style.backgroundColor = "#A9E2F3";
+    for (var i = 1; i < table.rows.length; i++) {
+    if(selectedRow.rowIndex==i){
+        var value=  table.rows[i].cells[2].innerHTML
+        return value;
+        }
+    }
+}
+
+}
+var arr = Array.from(rows);
+arr.map(function(index){
+    addEvent(index,"click",function (){ selectRow(this)})
+})
+function addEvent(element, evt, callback) {
+    if (element.addEventListener) {
+        element.addEventListener(evt, callback, false);
+    } 
+}
+
+
+function selectcell(){
+    var table = document.getElementById("gameTable");
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++){
+                
+               table.rows[i].cells[j].onclick = function (i,j) {
+                console.log(i+"-------i------>")
+               tableText(this,i,j);
+                }
+            }
+        }
+    }
+}
+
+var hasan;
+function tableText(tableCell,a,b) {
+    hasan =tableCell;
+   console.log(a + "-------"+ b)
+    tableCell.style.backgroundColor = 'green';
+    
+}
+
+
