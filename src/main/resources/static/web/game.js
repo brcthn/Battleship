@@ -37,6 +37,7 @@ renderRowsShip();
 fillCell();
 selectcell();
 
+
 //map sirayla elemanlari gezer.
 //Ship Grid
 function getHeaderHtml() {
@@ -179,7 +180,6 @@ function fillCell() {
 
 }
 
-
 // putship
 function putShip() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -205,6 +205,7 @@ var table = document.getElementById("gameTableShip");
 var rows = table.getElementsByTagName("tr");
 var selectedRow;
 var selectedShipLength;
+var numberOfSelectedShip;
 function selectRow(row) {
     if (selectedRow !== undefined) {
         selectedRow.style.backgroundColor = "transparent";
@@ -212,8 +213,11 @@ function selectRow(row) {
     if (selectedRow = row) {
         selectedRow.style.backgroundColor = "#A9E2F3";
         for (var i = 1; i < table.rows.length; i++) {
-            if (selectedRow.rowIndex == i) {
+            if (selectedRow.rowIndex == i &&  table.rows[i].cells[0].innerHTML!=0){
                 selectedShipLength = table.rows[i].cells[2].innerHTML
+                numberOfSelectedShip = table.rows[i].cells[0].innerHTML;
+                table.rows[i].cells[0].innerHTML=0
+                
             }
         }
     }
@@ -229,33 +233,60 @@ function addEvent(element, evt, callback) {
     }
 }
 
-
 function selectcell() {
     var table = document.getElementById("gameTable");
+
     if (table != null) {
-        for (var i = 0; i < table.rows.length; i++) {
-            for (var j = 0; j < table.rows[i].cells.length; j++) {
+        for (var i = 1; i < table.rows.length; i++) {
+            for (var j = 1; j < table.rows[i].cells.length; j++) {
                 //i=MouseEvent
                 table.rows[i].cells[j].onclick = function (i) {
-                    tableText(this,i);
-                   
+                    clickedCells(this, i);
+
                 }
             }
         }
     }
 }
 
+var rowId;
+var cellId;
 
-function tableText(clickedCell,i) {
+function clickedCells(clickedCell, i) {
     //horizantal green
     var table = document.getElementById("gameTable");
-    var rowId = i.path[1].getElementsByTagName("th")[0].innerHTML;
-    console.log("============"+rowId)
-    if(selectedShipLength != null){
-        for(var i=0; i<selectedShipLength; i++){
-            table.rows[rowId].cells[clickedCell.cellIndex+i].style.backgroundColor = 'green';        
-        }
+    if(numberOfSelectedShip>0){
+        rowId = i.path[1].getElementsByTagName("th")[0].innerHTML;
+        cellId = clickedCell.cellIndex;
     }
-    returnShip(i)
+    if (selectedShipLength != null && numberOfSelectedShip>0 && parseInt(cellId) + parseInt(selectedShipLength) <= 11) {
+        for (var k = 0; k < selectedShipLength; k++) {
+            table.rows[rowId].cells[cellId + k].style.backgroundColor = 'green';
+            numberOfSelectedShip = parseInt(numberOfSelectedShip)-1;
+        }
+
+    }
+}
+
+var horizontal = true;
+function returnShipButton() {
+    var table = document.getElementById("gameTable");
+    if (parseInt(rowId) + parseInt(selectedShipLength) > 11) {
+        return;
+    }
+    if (horizontal == true) {
+        for (var k = 0; k < selectedShipLength; k++) {
+            table.rows[rowId].cells[cellId + k].style.backgroundColor = 'transparent';
+            table.rows[parseInt(rowId) + k].cells[cellId].style.backgroundColor = 'green';
+        }
+        horizontal = false;
+    } else {
+        for (var k = 1; k < selectedShipLength; k++) {
+            table.rows[rowId].cells[cellId + k].style.backgroundColor = 'green';
+            table.rows[parseInt(rowId) + k].cells[cellId].style.backgroundColor = 'transparent';
+        } 
+        horizontal = true;
+
+    }
 
 }

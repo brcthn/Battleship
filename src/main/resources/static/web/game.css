@@ -64,7 +64,15 @@ margin-top:150px;
 }
 #gameTableShip tr {
     background-color: transparent;
-    
- 
+}
+#returnShipButton{
+    background-color: #0174DF;
+    height: 40px;
     
 }
+#saveShipButton{
+    background-color: #0174DF;
+    height: 40px;
+}
+
+

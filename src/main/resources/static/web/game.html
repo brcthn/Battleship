@@ -50,24 +50,29 @@
     </div>
 
 
-<div id="tableShip"  class="col-xl-2 ">
+    <div id="tableShip"  class="col-xl-1 ">
         <table class="table table-bordered  table-hover table-sm" id="gameTableShip">
             <thead id="table-headers-ship"> 
                 <tbody id="table-rows-ship">
                 </tbody>
             </thead>
-</table>
+    </table>
 </div> 
 </div>
-<div>
+<div class="row">
+    <div  class="col-xl-1" >
         <form onsubmit="return false ">
-           <button type="text"  class="btn  btn-sm" onclick="putShip()" id="createButton">Save Ship</button>
+           <button type="text"  class="btn  btn-sm" onclick="putShip()" id="saveShipButton">Save Ship</button>
        </form>
-   </div>
-   <div>
-        <img src="return.png" id="returnImg" >
-   </div>
+    </div>
+       <div  class=" col-xl-1"  >
+        <form onsubmit="return false ">
+                <button type="text" id="returnShipButton"  class="btn  btn-sm" onclick="returnShipButton()"> <img src="return.png"></button>
+            </form> 
+        </div>
+</div>
 
+</div>
 <script src="game.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
