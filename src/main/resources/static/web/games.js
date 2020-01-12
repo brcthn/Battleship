@@ -59,7 +59,7 @@ function signup(){
             return data;
         }
     }).then(function(n){
-         window.location.href= "http://localhost:8080/web/game?gp="+n
+         window.location.href= "http://localhost:8080/web/game.html?gp="+n
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })

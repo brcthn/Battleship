@@ -5,11 +5,14 @@ import com.brcthn.battleship.persistance.dto.*;
 import com.brcthn.battleship.persistance.entity.*;
 import com.brcthn.battleship.persistance.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +23,10 @@ import java.util.*;
 @RequestMapping("/api")
 public class SalvoController {
 
+
     @Autowired
     private GameRepository gameRepository;
+
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
 
@@ -36,6 +41,9 @@ public class SalvoController {
 
     @Autowired
     private ShipRepository shipRepository;
+
+    @Autowired
+    private SalvoRepository salvoRepository;
 
     @GetMapping("/games")
     public CurrentPlayerDto getAll() {
@@ -109,7 +117,17 @@ public class SalvoController {
 
         List<GamePlayerDto> gamePlayerList = new ArrayList<>();
         Game game = gamePlayer.getGame();
+
+        GamePlayer opponentGamePlayer = null;
+
         for (GamePlayer gp : game.getGamePlayers()) {
+
+            //apponent player find
+            if(loggedUser.getId() != gp.getPlayer().getId()){
+                opponentGamePlayer = gp;
+            }
+
+
             GamePlayerDto gamePlayerDto = new GamePlayerDto();
             gamePlayerDto.setId(gp.getId());
 
@@ -123,6 +141,7 @@ public class SalvoController {
 
             gamePlayerList.add(gamePlayerDto);
         }
+
         List<ShipDto> shipList = new ArrayList<>();
         for (Ship s : gamePlayer.getShips()) {
             ShipDto shipDto = new ShipDto();
@@ -141,11 +160,105 @@ public class SalvoController {
                 salvoList.add(salvoDto);
             }
         }
+
         gamePlayerPersonDto.setShip(shipList);
         gamePlayerPersonDto.setGamePlayers(gamePlayerList);
         gamePlayerPersonDto.setSalvoes(salvoList);
 
+        List<HistoryDto> history = prepareHistory(gamePlayer, opponentGamePlayer);
+
+
+        gamePlayerPersonDto.setHistory(history);
+
+
         return gamePlayerPersonDto;
+    }
+
+    private List<HistoryDto> prepareHistory(GamePlayer gamePlayer, GamePlayer opponentGamePlayer) {
+        List<HistoryDto> history = new ArrayList<>();
+        Map<String, Integer> sink=new HashMap<>();
+        /**
+         *  unique gemi ismi,   toplam vurulma sayisi
+         *  destroyer, 2
+         *
+         *
+         *
+         */
+
+
+        for (Ship ship : gamePlayer.getShips()) {
+            for (String location : ship.getLocations()) {
+                if (opponentGamePlayer != null) {
+                    for (Salvo salvo : opponentGamePlayer.getSalvoes()) {
+                            if (salvo.getLocation().contains(location)) {
+                                HistoryDto historyShip = contains(history, ship);
+
+                                if (historyShip == null || historyShip.getTurn() != salvo.getTurnNumber()) {
+
+
+                                    //sink
+                                    if(!sink.containsKey(ship.getType())) {
+                                        sink.put(ship.getType(), 1);
+                                    } else{
+                                        sink.put(ship.getType(), sink.get(ship.getType()) + 1) ;
+                                    }
+
+                                    HistoryDto historyDto = new HistoryDto();
+                                    historyDto.setType(ship.getType());
+                                    historyDto.setTurn(salvo.getTurnNumber());
+                                    if(historyDto.getHit() == null){
+                                        historyDto.setHit(0);
+                                    }
+                                    historyDto.setHit(historyDto.getHit() + 1);
+
+
+                                    if(sink.get(ship.getType()) == ship.getLocations().size()){
+                                        historyDto.setSink(true);
+                                    }
+
+                                    historyDto.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
+
+                                    history.add(historyDto);
+
+                                } else {
+                                    historyShip.setHit(historyShip.getHit() + 1);
+
+                                    //sink // if ve else de ayni seyi yapiyor.
+                                    if(!sink.containsKey(historyShip.getType())) {
+                                        sink.put(historyShip.getType(), historyShip.getHit());
+                                    } else{
+                                        sink.put(historyShip.getType(), sink.get(historyShip.getType()) + 1) ;
+                                    }
+
+                                    if(sink.get(historyShip.getType()) == ship.getLocations().size()){
+                                        historyShip.setSink(true);
+                                    }
+
+
+                                    historyShip.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
+
+                                }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        return history;
+    }
+
+    private HistoryDto contains(List<HistoryDto> history, Ship ship) {
+        HistoryDto currentHistory = null;
+        for (HistoryDto h : history) {
+            if (h.getType().equals(ship.getType())) {
+                currentHistory = h;
+            }
+        }
+        return currentHistory;
     }
 
     private Player currentUser(Authentication authentication) {
@@ -259,7 +372,7 @@ public class SalvoController {
             return new ResponseEntity<>("The user already has ships placed", HttpStatus.FORBIDDEN);
         }
 
-        for (ShipDto shipDto:shipList) {
+        for (ShipDto shipDto : shipList) {
             Ship ship = new Ship(shipDto.getShipType(), shipDto.getLocations());
             shipRepository.save(ship);
             gamePlayer.add(ship);
@@ -270,5 +383,48 @@ public class SalvoController {
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }
 
+    @RequestMapping(path = "/games/players/{gamePlayerId}/salvos", method = RequestMethod.POST)
+    public ResponseEntity<Object> createSalvo(@PathVariable("gamePlayerId") long gamePlayerId, @RequestBody SalvoDto salvoList) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Player userLogged = currentUser(authentication);
+        if (userLogged.getEmail().isEmpty()) {
+            return new ResponseEntity<>("There is no current user logged in", HttpStatus.UNAUTHORIZED);
+        }
+        GamePlayer gamePlayer = gamePlayerRepository.findById(gamePlayerId).get();
+        if (gamePlayer == null) {
+            return new ResponseEntity<>("There is no game player with the given ID", HttpStatus.UNAUTHORIZED);
+        }
+        if (userLogged.getId() != gamePlayer.getPlayer().getId()) {
+            return new ResponseEntity<>("The current user is not the game player the ID references", HttpStatus.UNAUTHORIZED);
+        }
+
+
+        Salvo p1LastSalvo = null;
+        Salvo p2LastSalvo = null;
+        for (Salvo s : gamePlayer.getSalvoes()) {
+            if (s.getTurnNumber() == salvoList.getTurn()) {
+                return new ResponseEntity<>("The user already has salvos placed", HttpStatus.FORBIDDEN);
+            }
+
+
+            if(salvoList.getTurn()-1 == s.getTurnNumber() && s.getGamePlayer().getPlayer().getId() == userLogged.getId()){
+                p1LastSalvo = s;
+            }
+
+            if(salvoList.getTurn()-1 == s.getTurnNumber() && s.getGamePlayer().getPlayer().getId() != userLogged.getId()){
+                p2LastSalvo = s;
+            }
+        }
+
+        if(p1LastSalvo == null || p2LastSalvo == null){
+            return new ResponseEntity<>("waiting for other player to fire salvo.", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        Salvo salvo = new Salvo(salvoList.getTurn(), salvoList.getLocations());
+        salvoRepository.save(salvo);
+        gamePlayer.addSalvo(salvo);
+        gamePlayerRepository.save(gamePlayer);
+        return new ResponseEntity<>("", HttpStatus.CREATED);
+    }
 }

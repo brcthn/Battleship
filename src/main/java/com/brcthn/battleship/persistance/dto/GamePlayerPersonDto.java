@@ -9,6 +9,15 @@ public class GamePlayerPersonDto {
     private List<GamePlayerDto> gamePlayers;
     private List<SalvoDto> salvoes;
     private List<ShipDto> ship;
+    private List<HistoryDto> history;
+
+    public List<HistoryDto> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<HistoryDto> history) {
+        this.history = history;
+    }
 
     public Long getId() {
         return id;

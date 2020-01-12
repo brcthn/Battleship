@@ -23,48 +23,88 @@
     </div>
 
 <div class="row" id="rows">
-        <div id="tableShip"  class="col-xl-2 ">
-                <table class="table table-bordered table-sm" id="gameTableShip">
-                    <thead id="table-headers-ship"> 
-                        <tbody id="table-rows-ship">
-                        </tbody>
-                    </thead>
+        <div>
+            <div id="tableShip"  class="col-xl-1">
+                    <table class="table table-bordered table-sm" id="gameTableShip">
+                        <thead id="table-headers-ship"> 
+                            <tbody id="table-rows-ship">
+                            </tbody>
+                        </thead>
+                    </table>
+            </div>
+
+            <div id="tableHitShip"  class="col-xl-1">
+                    <table class="table table-bordered table-sm" id="hitShipTable">
+                        <thead id="table-headers-hit"> 
+                    <tr> <th>Aircraft Carrier</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th>Battleship</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th>Submarine</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th>Destroyer</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th>Patrol Boat</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                            <tbody id="table-rows-hit">
+                            </tbody>
+                        </thead>
                 </table>
+                
+            </div>
         </div>
-    <div id="table" class="col-xl-4">
-    <table class="table table-bordered " id="gameTable">
-        <thead id="table-headers"> 
-            <tbody id="table-rows">
-            </tbody>
-        </thead>
-    </table>
-    </div>
 
-    <div id="tableSalvo" class="col-xl-4">
-    <table class="table table-bordered" id="gameTableSalvo">
-        <thead id="table-headers-salvo">
-            <tbody id="table-rows-salvo">
-            </tbody>
-        </thead>
-    </table>
-    </div>
+        <div id="table" class="col-xl-4">
+            <table class="table table-bordered " id="gameTable">
+                <thead id="table-headers"> 
+                    <tbody id="table-rows">
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+
+        <div id="tableSalvo" class="col-xl-4">
+            <table class="table table-bordered" id="gameTableSalvo">
+                <thead id="table-headers-salvo">
+                    <tbody id="table-rows-salvo">
+                    </tbody>
+                </thead>
+            </table>
+        </div>
 
 
-<div id="tableShip"  class="col-xl-2 ">
-        <table class="table table-bordered  table-hover table-sm" id="gameTableShip">
-            <thead id="table-headers-ship"> 
-                <tbody id="table-rows-ship">
-                </tbody>
-            </thead>
-</table>
-</div> 
 </div>
-<div>
-        <form onsubmit="return false ">
-           <button type="text"  class="btn  btn-sm" onclick="putShip()" id="createButton">Save Ship</button>
-       </form>
-   </div>
 
+<div class="row">
+    <div  class="col-xl-1" >
+        <form onsubmit="return false ">
+           <button type="text"  class="btn  btn-sm" onclick="saveShip()" id="saveShipButton">Save Ship</button>
+       </form>
+    </div>
+       <div  class=" col-xl-1"  >
+        <form onsubmit="return false ">
+                <button type="text" id="ShipButton"  class="btn  btn-sm" onclick="returnShipButton()">  <img src="return.png"> </button>
+            </form> 
+           
+        </div>
+        <div  class=" col-xl-1"  >
+            <form onsubmit="return false ">
+                    <button type="text" id="ShipButton"  class="btn  btn-sm" onclick="saveSalvo()">Save Salvo  </button>
+                </form> 
+               
+            </div>
+</div>
+
+
+<!-- <div id="tableShip"  class="col-xl-1 ">
+    <table class="table table-bordered  table-hover table-lg" id="hitShipTable">
+        <thead id="table-headers-ship"> 
+     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+            <tbody id="table-rows-ship">
+            </tbody>
+        </thead>
+</table>
+
+</div> -->
 <script src="game.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

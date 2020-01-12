@@ -30,6 +30,7 @@
 }
 #gameTableSalvo > tbody > tr > th  {
     border:1.9px solid #005b96;
+   
 }
 #login { 
 margin-top:150px;
@@ -70,9 +71,14 @@ margin-top:150px;
     height: 40px;
     
 }
-#saveShipButton{
+#ShipButton{
     background-color: #0174DF;
     height: 40px;
 }
+
+/* #tableHitShip{
+    margin: 30px
+ 
+} */
 
 
