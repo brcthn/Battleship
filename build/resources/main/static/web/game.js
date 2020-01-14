@@ -10,9 +10,14 @@ const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('gp');
 var horizontal = true;
 
-// console.log("http://localhost:8080/api/game_view/" + myParam)
+function refresh(){
+    window.location.href= "http://192.168.0.5:8080/web/game.html?gp="+myParam
+}
 
-fetch("http://localhost:8080/api/game_view/" + myParam
+
+// console.log("http://192.168.0.5:8080/api/game_view/" + myParam)
+
+fetch("http://192.168.0.5:8080/api/game_view/" + myParam
 ).then(function (response) {
     if (response.status == 401) {
         alert("401")
@@ -20,18 +25,41 @@ fetch("http://localhost:8080/api/game_view/" + myParam
     return response.json();
 }).then(function (response) {
     info = response;
-     console.log(JSON.stringify(info))
+    console.log("-------------------------------->"+JSON.stringify(info))
+
     getShipLocation();
     getEmail();
-    getPlayerSalvo();
     paintHitShip()
+
+    console.log("--------------ship length------------------>"+info.ship.length)
+
+    if(info.state!="Place Ship"){
+        console.log("--------------salvo if------------------>")
+        document.getElementById("SalvoButton").style.display='inline';
+        createSalvoGrid();   
+        getPlayerSalvo();
+    }
+    if(info.state=="Wait"){
+        document.getElementById("SalvoButton").style.display='none';
+        setInterval(function(){
+            refresh();
+        }, 1000)
+
+    }
+    if(info.state=="Enter Salvo"){
+        document.getElementById("SalvoButton").style.display='inline';
+    }
+
+    selectcellSalvo();
+    alert(info.state);
+
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
 }
 )
 renderHeaders();
 renderRows();
-createSalvoGrid();
+
 renderHeadersShip();
 renderRowsShip();
 fillCell();
@@ -190,7 +218,7 @@ function saveShip() {
     const gpIdShip = urlParams.get('gp');
 
     var body = shipList
-    fetch("http://localhost:8080/api/games/players/" + gpIdShip + "/ships", {
+    fetch("http://192.168.0.5:8080/api/games/players/" + gpIdShip + "/ships", {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -199,8 +227,7 @@ function saveShip() {
         body: JSON.stringify(body)
     })
         .then(function (response) {
-            // console.log(response)
-            return response;
+            refresh();
         })
 }
 
@@ -401,11 +428,15 @@ function salvoBody(turn,locations){
 }
 
 function saveSalvo() {
+    if(info.ship == 'undefined' || info.ship.length == 0 || info.ship.length < 0){
+        alert("You should put your 5 ships first");
+        return;
+    }
     const salvogp = new URLSearchParams(window.location.search);
     const gp = salvogp.get('gp');
     var body = new salvoBody(turn+1,salvoList)
     console.log(JSON.stringify(body)+"======body=====")
-    fetch("http://localhost:8080/api/games/players/" + gp + "/salvos", {
+    fetch("http://192.168.0.5:8080/api/games/players/" + gp + "/salvos", {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -414,8 +445,7 @@ function saveSalvo() {
         body: JSON.stringify(body)
     })
         .then(function (response) {
-            alert(response.status)
-            return response;
+           refresh();
         })
 }
 

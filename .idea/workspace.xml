@@ -12,18 +12,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/api/SalvoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/api/SalvoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/persistance/dto/ShipDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/persistance/dto/ShipDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/static/web/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/web/game.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/static/web/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/web/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/static/web/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/web/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/web/games.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/web/games.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/static/web/games.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/web/games.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/web/game.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/web/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/web/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/games.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/web/games.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/games.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/web/games.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,26 +79,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/BattleshipApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3944">
-              <caret line="65" column="42" lean-forward="true" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2193#2194#0" expanded="true" />
-                <element signature="e#2265#2266#0" expanded="true" />
-                <marker date="1576111056276" expanded="true" signature="12724:12758" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="258" selection-start-line="258" selection-end-line="258" />
+            <state relative-caret-position="962">
+              <caret line="248" column="29" selection-start-line="248" selection-start-column="29" selection-end-line="248" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,25 +92,81 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/CurrentPlayerDto.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Score.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="349">
+              <caret line="25" column="20" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#644#645#0" expanded="true" />
+                <element signature="e#671#672#0" expanded="true" />
+                <element signature="e#708#709#0" expanded="true" />
+                <element signature="e#740#741#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+                <element signature="e#797#798#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#870#871#0" expanded="true" />
+                <element signature="e#898#899#0" expanded="true" />
+                <element signature="e#925#926#0" expanded="true" />
+                <element signature="e#962#963#0" expanded="true" />
+                <element signature="e#994#995#0" expanded="true" />
+                <element signature="e#1088#1089#0" expanded="true" />
+                <element signature="e#1120#1121#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Ship.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="180">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/f769e9287286f80f6b1d943cc27194ec33d2041c/spring-web-5.1.10.RELEASE.jar!/org/springframework/http/HttpStatus.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Salvo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="17" column="33" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/SalvoDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="20" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#838#839#0" expanded="true" />
-                <element signature="e#865#866#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
-                <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#413#414#0" expanded="true" />
+                <element signature="e#455#456#0" expanded="true" />
+                <element signature="e#489#490#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+                <element signature="e#457#458#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,53 +177,23 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="23" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="23" />
-              <folding>
-                <element signature="e#348#349#0" expanded="true" />
-                <element signature="e#376#377#0" expanded="true" />
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/GamePlayer.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="76" column="12" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="12" />
+            <state relative-caret-position="600">
+              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1203#1204#0" expanded="true" />
-                <element signature="e#1235#1236#0" expanded="true" />
-                <element signature="e#1412#1413#0" expanded="true" />
-                <element signature="e#1440#1441#0" expanded="true" />
-                <element signature="e#1485#1486#0" expanded="true" />
-                <element signature="e#1519#1520#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-305">
-              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#838#839#0" expanded="true" />
+                <element signature="e#865#866#0" expanded="true" />
+                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#1153#1154#0" expanded="true" />
+                <element signature="e#1185#1186#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -222,7 +231,15 @@
       <find>GlobalAuthenticationConfigurerAdapter</find>
       <find>login</find>
       <find>loadUserByUsername</find>
+      <find>Return Game</find>
       <find>.setGame</find>
+      <find>pop</find>
+      <find>returnS</find>
+      <find>salv</find>
+      <find>NOT</find>
+      <find>history</find>
+      <find>score</find>
+      <find>opponentGamePlayer</find>
     </findStrings>
     <replaceStrings>
       <replace>firstGame</replace>
@@ -261,11 +278,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/CurrentPlayerDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/PlayerDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/BattleshipApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipListDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipDto.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/BattleshipApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/web/game.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/HistoryDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java" />
       </list>
     </option>
@@ -276,10 +295,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
-    <option name="height" value="821" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -289,6 +307,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -407,14 +427,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577211353775" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578963634334" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
@@ -568,9 +587,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="821" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24606581" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2639485" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -579,8 +598,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.04249292" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" weight="0.4022663" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.07682776" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" weight="0.401487" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -600,37 +619,6 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3297568" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28898427" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25637394" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" weight="0.41501418" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5007153" side_tool="true" weight="0.49150142" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Build" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3286119" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Gradle" order="5" weight="0.3297568" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3297568" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -673,15 +661,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java</url>
-          <line>159</line>
+          <line>191</line>
           <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java</url>
-          <line>247</line>
-          <properties />
-          <option name="timeStamp" value="35" />
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -692,6 +674,11 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>gamePlayer.getSalvoes()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>playerRepository.findByEmail(authentication.getName())</expression-string>
         <language-id>JAVA</language-id>
@@ -732,120 +719,11 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>all.get(1).getGamePlayers().get(1).getPlayer().getFirstName()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.1.11.RELEASE/3d7a007151b0f8e830ac2e20019583cb5f2b6af1/spring-data-commons-2.1.11.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/SalvoDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="e#215#216#0" expanded="true" />
-            <element signature="e#244#245#0" expanded="true" />
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#322#323#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#440#441#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ScoreDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.1.9.RELEASE/cd8b0aab7b0b079e113dfe627113b65887455068/spring-boot-2.1.9.RELEASE-sources.jar!/org/springframework/boot/CommandLineRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Salvo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.1.6.RELEASE/fa961dd322e17961dbd5e2bc72df1d2e29ed2afe/spring-security-web-5.1.6.RELEASE-sources.jar!/org/springframework/security/web/authentication/AuthenticationSuccessHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/servis/PlayerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HELP.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/brcthn/battleship/BattleshipApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/authentication/configuration/GlobalAuthenticationConfigurerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="351" column="19" selection-start-line="351" selection-start-column="19" selection-end-line="351" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/AbstractRequestMatcherRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
-          <folding>
-            <element signature="e#4191#4192#0" expanded="true" />
-            <element signature="e#4267#4268#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/AbstractRequestMatcherRegistry.java" />
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -853,43 +731,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/crypto/password/PasswordEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/userdetails/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="83" column="11" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/authority/AuthorityUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/crypto/password/PasswordEncoder.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/userdetails/User.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/authority/AuthorityUtils.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/config/WebSecurityConfiguration.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/config/WebSecurityConfig.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/builders/HttpSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="897" column="43" selection-start-line="897" selection-start-column="43" selection-end-line="897" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/authentication/builders/AuthenticationManagerBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="183" column="103" selection-start-line="183" selection-start-column="103" selection-end-line="183" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/builders/HttpSecurity.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/authentication/builders/AuthenticationManagerBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/repository/SalvoRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -910,50 +758,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/ExpressionUrlAuthorizationConfigurer.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/ExpressionUrlAuthorizationConfigurer.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.1.6.RELEASE/fa961dd322e17961dbd5e2bc72df1d2e29ed2afe/spring-security-web-5.1.6.RELEASE-sources.jar!/org/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/FormLoginConfigurer.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/userdetails/UserDetailsService.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.26/45536f1ee58d7dac442599fab558a7e8f93402ad/tomcat-embed-core-9.0.26-sources.jar!/org/apache/tomcat/util/net/openssl/ciphers/Authentication.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/http/ResponseEntity.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="438" column="58" lean-forward="true" selection-start-line="438" selection-start-column="58" selection-end-line="440" selection-end-column="10" />
-          <folding>
-            <element signature="e#14625#14626#0" expanded="true" />
-            <element signature="e#14658#14659#0" expanded="true" />
-            <element signature="e#15688#15689#0" expanded="true" />
-            <element signature="e#15725#15726#0" expanded="true" />
-            <element signature="e#16029#16030#0" expanded="true" />
-            <element signature="e#16071#16072#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="285">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.1.6.RELEASE/fa961dd322e17961dbd5e2bc72df1d2e29ed2afe/spring-security-web-5.1.6.RELEASE-sources.jar!/org/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/http/HttpStatus.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.6.RELEASE/a287bf3a8445e83541530fc59c0c1eaea7f9a87e/spring-security-config-5.1.6.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/FormLoginConfigurer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="194" column="40" lean-forward="true" selection-start-line="194" selection-start-column="40" selection-end-line="194" selection-end-column="40" />
+        <state relative-caret-position="29">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.10.RELEASE/319dd7bb83ac8baab1fd7fb9f908390712820c97/spring-webmvc-5.1.10.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-305">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
           <folding>
-            <element signature="e#7709#7710#0" expanded="true" />
-            <element signature="e#7749#7750#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.6.RELEASE/c6e9a670fd05adf1a77db18b5277c4012b328f9/spring-security-core-5.1.6.RELEASE-sources.jar!/org/springframework/security/core/userdetails/UserDetailsService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipListDto.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/games.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+        <state relative-caret-position="-163">
+          <caret line="98" column="60" lean-forward="true" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.26/45536f1ee58d7dac442599fab558a7e8f93402ad/tomcat-embed-core-9.0.26-sources.jar!/org/apache/tomcat/util/net/openssl/ciphers/Authentication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/game.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="115">
+          <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.1.11.RELEASE/3d7a007151b0f8e830ac2e20019583cb5f2b6af1/spring-data-commons-2.1.11.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.1.11.RELEASE/dace2a47d274ac5f0ac3ff2f47cb0b936bef5b46/spring-data-commons-2.1.11.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1299">
+          <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/util/Stack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="79" column="29" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
         </state>
       </provider>
     </entry>
@@ -967,34 +852,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/http/ResponseEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="90" column="11" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="11" />
-          <folding>
-            <element signature="e#3130#3131#0" expanded="true" />
-            <element signature="e#3161#3162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/http/HttpStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GameDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="180">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1009,55 +869,146 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/PlayerDto.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/HistoryDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="46" lean-forward="true" selection-start-column="46" selection-end-column="46" />
+        <state relative-caret-position="135">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/lang/Object.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/PlayerDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/CurrentPlayerDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Ship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#838#839#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/f769e9287286f80f6b1d943cc27194ec33d2041c/spring-web-5.1.10.RELEASE.jar!/org/springframework/http/HttpStatus.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/f769e9287286f80f6b1d943cc27194ec33d2041c/spring-web-5.1.10.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="71" column="72" lean-forward="true" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/GamePlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#1519#1520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Salvo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/SalvoDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/GamePlayerPersonDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        <state relative-caret-position="210">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
+        <state relative-caret-position="180">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.10.RELEASE/319dd7bb83ac8baab1fd7fb9f908390712820c97/spring-webmvc-5.1.10.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/BattleshipApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="157">
+          <caret line="81" column="19" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="e#2265#2266#0" expanded="true" />
+            <marker date="1578239410355" expanded="true" signature="13160:13194" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Score.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+        <state relative-caret-position="349">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#644#645#0" expanded="true" />
@@ -1078,103 +1029,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-305">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipListDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#303#304#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/CurrentPlayerDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/Ship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#838#839#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/entity/GamePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="76" column="12" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1235#1236#0" expanded="true" />
-            <element signature="e#1412#1413#0" expanded="true" />
-            <element signature="e#1440#1441#0" expanded="true" />
-            <element signature="e#1485#1486#0" expanded="true" />
-            <element signature="e#1519#1520#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/BattleshipApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3944">
-          <caret line="65" column="42" lean-forward="true" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2193#2194#0" expanded="true" />
-            <element signature="e#2265#2266#0" expanded="true" />
-            <marker date="1576111056276" expanded="true" signature="12724:12758" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/persistance/dto/ShipDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="23" />
-          <folding>
-            <element signature="e#348#349#0" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.10.RELEASE/d0d3a2973d0feb5f13a2cb3b171883d2fe3d6019/spring-web-5.1.10.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="189" selection-start-line="189" selection-end-line="189" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brcthn/battleship/api/SalvoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="258" selection-start-line="258" selection-end-line="258" />
+        <state relative-caret-position="962">
+          <caret line="248" column="29" selection-start-line="248" selection-start-column="29" selection-end-line="248" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

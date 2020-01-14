@@ -5,12 +5,12 @@ function loginFetch(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-   fetch("http://localhost:8080/api/login?"+"email="+email+"&"+"password="+password,{
+   fetch("http://192.168.0.5:8080/api/login?"+"email="+email+"&"+"password="+password,{
    method:'POST'})
    .then(function(response){
       if(response.status==200){
         //redirect
-        window.location.href = "http://localhost:8080/web/games.html";
+        window.location.href = "http://192.168.0.5:8080/web/games.html";
       }else{
       alert(response.status)
       }
@@ -20,10 +20,10 @@ function loginFetch(){
 }
 
 function logoutFetch(){
-    fetch("http://localhost:8080/api/logout?")
+    fetch("http://192.168.0.5:8080/api/logout?")
     .then(function(response){
         if(response.status==200){
-            window.location.href = "http://localhost:8080/web/index.html";
+            window.location.href = "http://192.168.0.5:8080/web/index.html";
         }
     else{
         alert("eror")
@@ -36,7 +36,7 @@ function signup(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-    fetch("http://localhost:8080/api/players?"+"email="+email +"&"+"password="+ password ,{
+    fetch("http://192.168.0.5:8080/api/players?"+"email="+email +"&"+"password="+ password ,{
         method:'POST'
     }).then(function(response){
         if(response.status==403){
@@ -50,7 +50,7 @@ function signup(){
  function createGameFetch(){
      const email=game.player.email
      
-     fetch("http://localhost:8080/api/games?username="+email,{
+     fetch("http://192.168.0.5:8080/api/games?username="+email,{
         method:'POST'
     }).then(function(response){
         var data=response.json();
@@ -59,14 +59,14 @@ function signup(){
             return data;
         }
     }).then(function(n){
-         window.location.href= "http://localhost:8080/web/game.html?gp="+n
+         window.location.href= "http://192.168.0.5:8080/web/game.html?gp="+n
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })
 }
 
 fetch(
-    "http://localhost:8080/api/games"
+    "http://192.168.0.5:8080/api/games"
     )
         .then(function(response){
             return response.json();
@@ -92,7 +92,7 @@ function linkForJoinGame(n){
     for(var k=0;k<n.gamePlayer.length;k++){
         if( n.gamePlayer[k].player.id==game.player.id){
             var str="Return Game"
-            var result = str.link("http://localhost:8080/web/game.html?gp="+n.gamePlayer[k].id);
+            var result = str.link("http://192.168.0.5:8080/web/game.html?gp="+n.gamePlayer[k].id);
             return result;
         }       
     }
@@ -102,7 +102,7 @@ function linkForJoinGame(n){
  var gpId;
  var res;
 function joinGame(n){
-    fetch("http://localhost:8080/api/game/"+n+"/players",{
+    fetch("http://192.168.0.5:8080/api/game/"+n+"/players",{
         method:'POST'
     }).then(function(response){
         res=response.status;
@@ -115,7 +115,7 @@ function joinGame(n){
         console.log(gpId+"-----2----")
         if(res==201){
             alert("Player save in the new game")
-             window.location.href= "http://localhost:8080/web/game.html?gp="+gpId
+             window.location.href= "http://192.168.0.5:8080/web/game.html?gp="+gpId
         }
    }).catch(function(error){
     if(res==403){

@@ -119,12 +119,15 @@ public class SalvoController {
         Game game = gamePlayer.getGame();
 
         GamePlayer opponentGamePlayer = null;
+        GamePlayer currentGamePlayer = null;
 
         for (GamePlayer gp : game.getGamePlayers()) {
 
             //apponent player find
             if(loggedUser.getId() != gp.getPlayer().getId()){
                 opponentGamePlayer = gp;
+            } else {
+                currentGamePlayer = gp;
             }
 
 
@@ -167,11 +170,80 @@ public class SalvoController {
 
         List<HistoryDto> history = prepareHistory(gamePlayer, opponentGamePlayer);
 
-
         gamePlayerPersonDto.setHistory(history);
 
+        String state = state(currentGamePlayer, opponentGamePlayer, history);
+        gamePlayerPersonDto.setState(state);
 
         return gamePlayerPersonDto;
+    }
+
+    private String state(GamePlayer currentGamePlayer, GamePlayer opponentGamePlayer, List<HistoryDto> history) {
+        if(currentGamePlayer.getShips().isEmpty()){
+           return "Place Ship";
+        }
+        if(currentGamePlayer.getShips().size()>opponentGamePlayer.getShips().size()){
+            return "Wait";
+        }
+        if(currentGamePlayer.getSalvoes().isEmpty()){
+            return "Enter Salvo";
+        }
+
+        int mySum = history.stream().mapToInt(HistoryDto::getHit).sum();
+        int opponentSum = history.stream().mapToInt(HistoryDto::getHit).sum();
+//        if(mySum == 17 && opponentSum == 17){
+//            Optional<Score> myScore = scoreRepository.findById(currentGamePlayer.getScore().getId());
+//            myScore.get().setLoses(myScore.get().getLoses()-1);
+//            myScore.get().setTies(myScore.get().getTies()+1);
+//            scoreRepository.save(myScore.get());
+//
+//            Optional<Score> opponentScore = scoreRepository.findById(opponentGamePlayer.getScore().getId());
+//            opponentScore.get().setWins(opponentScore.get().getWins()-1);
+//            opponentScore.get().setTies(opponentScore.get().getTies()+1);
+//            scoreRepository.save(opponentScore.get());
+//        }
+
+        if(mySum == 17){
+            //current wins
+            Optional<Score> myScore = scoreRepository.findById(currentGamePlayer.getScore().getId());
+            if(myScore.isPresent()){
+                myScore.get().setWins(myScore.get().getWins()+1);
+                scoreRepository.save(myScore.get());
+            } else {
+                Score myNewScore = new Score();
+                myNewScore.setWins(1);
+                myNewScore.setGame(currentGamePlayer.getGame());
+                myNewScore.setPlayer(currentGamePlayer.getPlayer());
+                scoreRepository.save(myNewScore);
+            }
+
+
+
+            //opponent looses
+            Optional<Score> opponentScore = scoreRepository.findById(opponentGamePlayer.getScore().getId());
+            if(opponentScore.isPresent()){
+                opponentScore.get().setLoses(myScore.get().getLoses()+1);
+                scoreRepository.save(opponentScore.get());
+            } else {
+                Score opponentNewScore = new Score();
+                opponentNewScore.setLoses(1);
+                opponentNewScore.setGame(opponentGamePlayer.getGame());
+                opponentNewScore.setPlayer(opponentGamePlayer.getPlayer());
+                scoreRepository.save(opponentNewScore);
+            }
+
+            return "Game Over";
+        }
+
+        if(currentGamePlayer.getSalvoes().size()>opponentGamePlayer.getSalvoes().size()){
+            return "Wait";
+        }
+        if(currentGamePlayer.getSalvoes().size()<=opponentGamePlayer.getSalvoes().size()){
+            return "Enter Salvo";
+        }
+
+
+        return null;
     }
 
     private List<HistoryDto> prepareHistory(GamePlayer gamePlayer, GamePlayer opponentGamePlayer) {
@@ -186,10 +258,10 @@ public class SalvoController {
          */
 
 
-        for (Ship ship : gamePlayer.getShips()) {
+        for (Ship ship : opponentGamePlayer.getShips()) {
             for (String location : ship.getLocations()) {
-                if (opponentGamePlayer != null) {
-                    for (Salvo salvo : opponentGamePlayer.getSalvoes()) {
+                if (gamePlayer != null) {
+                    for (Salvo salvo : gamePlayer.getSalvoes()) {
                             if (salvo.getLocation().contains(location)) {
                                 HistoryDto historyShip = contains(history, ship);
 
@@ -399,26 +471,10 @@ public class SalvoController {
             return new ResponseEntity<>("The current user is not the game player the ID references", HttpStatus.UNAUTHORIZED);
         }
 
-
-        Salvo p1LastSalvo = null;
-        Salvo p2LastSalvo = null;
         for (Salvo s : gamePlayer.getSalvoes()) {
             if (s.getTurnNumber() == salvoList.getTurn()) {
                 return new ResponseEntity<>("The user already has salvos placed", HttpStatus.FORBIDDEN);
             }
-
-
-            if(salvoList.getTurn()-1 == s.getTurnNumber() && s.getGamePlayer().getPlayer().getId() == userLogged.getId()){
-                p1LastSalvo = s;
-            }
-
-            if(salvoList.getTurn()-1 == s.getTurnNumber() && s.getGamePlayer().getPlayer().getId() != userLogged.getId()){
-                p2LastSalvo = s;
-            }
-        }
-
-        if(p1LastSalvo == null || p2LastSalvo == null){
-            return new ResponseEntity<>("waiting for other player to fire salvo.", HttpStatus.NOT_ACCEPTABLE);
         }
 
         Salvo salvo = new Salvo(salvoList.getTurn(), salvoList.getLocations());

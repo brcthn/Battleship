@@ -75,6 +75,11 @@ margin-top:150px;
     background-color: #0174DF;
     height: 40px;
 }
+#SalvoButton{
+    background-color: #0174DF;
+    height: 40px;
+    display: none
+}
 
 /* #tableHitShip{
     margin: 30px
