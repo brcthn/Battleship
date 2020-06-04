@@ -98,7 +98,6 @@ public class SalvoController {
         return currentPlayerDto;
     }
 
-
     @RequestMapping(value = "/game_view/{nn}", method = RequestMethod.GET)
     public Object getGame(@PathVariable("nn") long gamePlayerId) {
 
@@ -124,7 +123,7 @@ public class SalvoController {
         for (GamePlayer gp : game.getGamePlayers()) {
 
             //apponent player find
-            if(loggedUser.getId() != gp.getPlayer().getId()){
+            if (loggedUser.getId() != gp.getPlayer().getId()) {
                 opponentGamePlayer = gp;
             } else {
                 currentGamePlayer = gp;
@@ -170,44 +169,43 @@ public class SalvoController {
 
         List<HistoryDto> history = prepareHistory(gamePlayer, opponentGamePlayer);
 
-        gamePlayerPersonDto.setHistory(history);
+        if(history !=  null){
+            gamePlayerPersonDto.setHistory(history);
 
-        String state = state(currentGamePlayer, opponentGamePlayer, history);
-        gamePlayerPersonDto.setState(state);
-
+            String state = state(currentGamePlayer, opponentGamePlayer, history);
+            gamePlayerPersonDto.setState(state);
+        }
         return gamePlayerPersonDto;
     }
 
     private String state(GamePlayer currentGamePlayer, GamePlayer opponentGamePlayer, List<HistoryDto> history) {
-        if(currentGamePlayer.getShips().isEmpty()){
-           return "Place Ship";
+        if (currentGamePlayer.getShips().isEmpty()) {
+            return "Place Ship";
         }
-        if(currentGamePlayer.getShips().size()>opponentGamePlayer.getShips().size()){
+        if (currentGamePlayer.getShips().size() > opponentGamePlayer.getShips().size()) {
             return "Wait";
         }
-        if(currentGamePlayer.getSalvoes().isEmpty()){
+        if (currentGamePlayer.getSalvoes().isEmpty()) {
             return "Enter Salvo";
         }
 
-        int mySum = history.stream().mapToInt(HistoryDto::getHit).sum();
-        int opponentSum = history.stream().mapToInt(HistoryDto::getHit).sum();
-//        if(mySum == 17 && opponentSum == 17){
-//            Optional<Score> myScore = scoreRepository.findById(currentGamePlayer.getScore().getId());
-//            myScore.get().setLoses(myScore.get().getLoses()-1);
-//            myScore.get().setTies(myScore.get().getTies()+1);
-//            scoreRepository.save(myScore.get());
-//
-//            Optional<Score> opponentScore = scoreRepository.findById(opponentGamePlayer.getScore().getId());
-//            opponentScore.get().setWins(opponentScore.get().getWins()-1);
-//            opponentScore.get().setTies(opponentScore.get().getTies()+1);
-//            scoreRepository.save(opponentScore.get());
-//        }
+        int mySum = scoreRepository.findById(currentGamePlayer.getScore().getId()).get().getSumHit();
+        int opponentSum = scoreRepository.findById(opponentGamePlayer.getScore().getId()).get().getSumHit();
+        if(mySum == 17 && opponentSum == 17){
+            Optional<Score> myScore = scoreRepository.findById(currentGamePlayer.getScore().getId());
+            myScore.get().setLoses(myScore.get().getLoses()-1);
+            myScore.get().setTies(myScore.get().getTies()+1);
+            scoreRepository.save(myScore.get());
 
-        if(mySum == 17){
+            Optional<Score> opponentScore = scoreRepository.findById(opponentGamePlayer.getScore().getId());
+            opponentScore.get().setWins(opponentScore.get().getWins()-1);
+            opponentScore.get().setTies(opponentScore.get().getTies()+1);
+            scoreRepository.save(opponentScore.get());
+        } else if (mySum == 17) {
             //current wins
             Optional<Score> myScore = scoreRepository.findById(currentGamePlayer.getScore().getId());
-            if(myScore.isPresent()){
-                myScore.get().setWins(myScore.get().getWins()+1);
+            if (myScore.isPresent()) {
+                myScore.get().setWins(myScore.get().getWins() + 1);
                 scoreRepository.save(myScore.get());
             } else {
                 Score myNewScore = new Score();
@@ -217,12 +215,10 @@ public class SalvoController {
                 scoreRepository.save(myNewScore);
             }
 
-
-
             //opponent looses
             Optional<Score> opponentScore = scoreRepository.findById(opponentGamePlayer.getScore().getId());
-            if(opponentScore.isPresent()){
-                opponentScore.get().setLoses(myScore.get().getLoses()+1);
+            if (opponentScore.isPresent()) {
+                opponentScore.get().setLoses(myScore.get().getLoses() + 1);
                 scoreRepository.save(opponentScore.get());
             } else {
                 Score opponentNewScore = new Score();
@@ -231,94 +227,97 @@ public class SalvoController {
                 opponentNewScore.setPlayer(opponentGamePlayer.getPlayer());
                 scoreRepository.save(opponentNewScore);
             }
-
             return "Game Over";
         }
 
-        if(currentGamePlayer.getSalvoes().size()>opponentGamePlayer.getSalvoes().size()){
+        if (currentGamePlayer.getSalvoes().size() > opponentGamePlayer.getSalvoes().size()) {
             return "Wait";
         }
-        if(currentGamePlayer.getSalvoes().size()<=opponentGamePlayer.getSalvoes().size()){
+        if (currentGamePlayer.getSalvoes().size() <= opponentGamePlayer.getSalvoes().size()) {
             return "Enter Salvo";
         }
-
-
         return null;
     }
 
     private List<HistoryDto> prepareHistory(GamePlayer gamePlayer, GamePlayer opponentGamePlayer) {
+        if (opponentGamePlayer == null) {
+           return null;
+        }
         List<HistoryDto> history = new ArrayList<>();
-        Map<String, Integer> sink=new HashMap<>();
+        Map<String, Integer> sink = new HashMap<>();
         /**
          *  unique gemi ismi,   toplam vurulma sayisi
          *  destroyer, 2
-         *
-         *
-         *
          */
 
+        int sumHit = 0;
 
         for (Ship ship : opponentGamePlayer.getShips()) {
             for (String location : ship.getLocations()) {
                 if (gamePlayer != null) {
                     for (Salvo salvo : gamePlayer.getSalvoes()) {
-                            if (salvo.getLocation().contains(location)) {
-                                HistoryDto historyShip = contains(history, ship);
+                        if (salvo.getLocation().contains(location)) {
+                            HistoryDto historyShip = contains(history, ship);
 
-                                if (historyShip == null || historyShip.getTurn() != salvo.getTurnNumber()) {
-
-
-                                    //sink
-                                    if(!sink.containsKey(ship.getType())) {
-                                        sink.put(ship.getType(), 1);
-                                    } else{
-                                        sink.put(ship.getType(), sink.get(ship.getType()) + 1) ;
-                                    }
-
-                                    HistoryDto historyDto = new HistoryDto();
-                                    historyDto.setType(ship.getType());
-                                    historyDto.setTurn(salvo.getTurnNumber());
-                                    if(historyDto.getHit() == null){
-                                        historyDto.setHit(0);
-                                    }
-                                    historyDto.setHit(historyDto.getHit() + 1);
+                            if (historyShip == null || historyShip.getTurn() != salvo.getTurnNumber()) {
 
 
-                                    if(sink.get(ship.getType()) == ship.getLocations().size()){
-                                        historyDto.setSink(true);
-                                    }
-
-                                    historyDto.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
-
-                                    history.add(historyDto);
-
+                                //sink
+                                if (!sink.containsKey(ship.getType())) {
+                                    sink.put(ship.getType(), 1);
                                 } else {
-                                    historyShip.setHit(historyShip.getHit() + 1);
-
-                                    //sink // if ve else de ayni seyi yapiyor.
-                                    if(!sink.containsKey(historyShip.getType())) {
-                                        sink.put(historyShip.getType(), historyShip.getHit());
-                                    } else{
-                                        sink.put(historyShip.getType(), sink.get(historyShip.getType()) + 1) ;
-                                    }
-
-                                    if(sink.get(historyShip.getType()) == ship.getLocations().size()){
-                                        historyShip.setSink(true);
-                                    }
-
-
-                                    historyShip.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
-
+                                    sink.put(ship.getType(), sink.get(ship.getType()) + 1);
                                 }
+
+                                HistoryDto historyDto = new HistoryDto();
+                                historyDto.setType(ship.getType());
+                                historyDto.setTurn(salvo.getTurnNumber());
+                                if (historyDto.getHit() == null) {
+                                    historyDto.setHit(0);
+                                }
+                                historyDto.setHit(historyDto.getHit() + 1);
+                                sumHit++;
+                                if (sink.get(ship.getType()) == ship.getLocations().size()) {
+                                    historyDto.setSink(true);
+                                }
+
+                                historyDto.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
+
+                                history.add(historyDto);
+
+                            } else {
+                                historyShip.setHit(historyShip.getHit() + 1);
+                                sumHit++;
+                                //sink // if ve else de ayni seyi yapiyor.
+                                if (!sink.containsKey(historyShip.getType())) {
+                                    sink.put(historyShip.getType(), historyShip.getHit());
+                                } else {
+                                    sink.put(historyShip.getType(), sink.get(historyShip.getType()) + 1);
+                                }
+
+                                if (sink.get(historyShip.getType()) == ship.getLocations().size()) {
+                                    historyShip.setSink(true);
+                                }
+                                historyShip.setLeft(ship.getLocations().size() - sink.get(ship.getType()));
+                            }
                         }
                     }
                 }
             }
         }
 
+        Optional<Score> s = scoreRepository.findById(gamePlayer.getScore().getId());
 
-
-
+        if(s.isPresent()) {
+            s.get().setSumHit(sumHit);
+            scoreRepository.save(s.get());
+        } else {
+            Score newScore = new Score();
+            newScore.setGame(gamePlayer.getGame());
+            newScore.setPlayer(gamePlayer.getPlayer());
+            newScore.setSumHit(sumHit);
+            scoreRepository.save(newScore);
+        }
 
         return history;
     }
@@ -366,7 +365,6 @@ public class SalvoController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-
 //game
         Game newGame = new Game();
         Date time = new Date();
@@ -407,9 +405,9 @@ public class SalvoController {
             return new ResponseEntity<>("No such game ", HttpStatus.FORBIDDEN);
         }
 
-        if (currentGame.getGamePlayers().size() == 2) {
-            return new ResponseEntity<>("Game is full ", HttpStatus.FORBIDDEN);
-        }
+//        if (currentGame.getGamePlayers().size() == 2) {
+//            return new ResponseEntity<>("Game is full ", HttpStatus.FORBIDDEN);
+//        }
         //gamePlayer
         GamePlayer newGamePlayer = new GamePlayer();
         newGamePlayer.setPlayer(loggedUser);

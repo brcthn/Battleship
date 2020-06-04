@@ -24,6 +24,15 @@ public class Score {
     private int wins;
     private int loses;
     private int ties;
+    private int sumHit;
+
+    public int getSumHit() {
+        return sumHit;
+    }
+
+    public void setSumHit(int sumHit) {
+        this.sumHit = sumHit;
+    }
 
     public int getWins() {
         return wins;

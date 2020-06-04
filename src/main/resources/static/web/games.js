@@ -1,16 +1,21 @@
 var game=[];
+// setInterval(function(){
+//     window.location.href= DOMAIN + "/web/games.html"
+// }, 5000)
 
+var DOMAIN =" https://batttleship.herokuapp.com:8080";
+//"http://localhost:8080";
 var data=0;
 function loginFetch(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-   fetch("http://192.168.0.5:8080/api/login?"+"email="+email+"&"+"password="+password,{
+   fetch(DOMAIN + "/api/login?"+"email="+email+"&"+"password="+password,{
    method:'POST'})
    .then(function(response){
       if(response.status==200){
         //redirect
-        window.location.href = "http://192.168.0.5:8080/web/games.html";
+        window.location.href = DOMAIN + "/web/games.html";
       }else{
       alert(response.status)
       }
@@ -20,10 +25,10 @@ function loginFetch(){
 }
 
 function logoutFetch(){
-    fetch("http://192.168.0.5:8080/api/logout?")
+    fetch(DOMAIN + "/api/logout?")
     .then(function(response){
         if(response.status==200){
-            window.location.href = "http://192.168.0.5:8080/web/index.html";
+            window.location.href = DOMAIN + "/web/index.html";
         }
     else{
         alert("eror")
@@ -36,7 +41,7 @@ function signup(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-    fetch("http://192.168.0.5:8080/api/players?"+"email="+email +"&"+"password="+ password ,{
+    fetch(DOMAIN + "/api/players?"+"email="+email +"&"+"password="+ password ,{
         method:'POST'
     }).then(function(response){
         if(response.status==403){
@@ -50,7 +55,7 @@ function signup(){
  function createGameFetch(){
      const email=game.player.email
      
-     fetch("http://192.168.0.5:8080/api/games?username="+email,{
+     fetch(DOMAIN + "/api/games?username="+email,{
         method:'POST'
     }).then(function(response){
         var data=response.json();
@@ -59,14 +64,14 @@ function signup(){
             return data;
         }
     }).then(function(n){
-         window.location.href= "http://192.168.0.5:8080/web/game.html?gp="+n
+         window.location.href= DOMAIN + "/web/game.html?gp="+n
     }).catch(function(error){
         console.log("Request failed: " + error.message);
     })
 }
 
 fetch(
-    "http://192.168.0.5:8080/api/games"
+    DOMAIN + "/api/games"
     )
         .then(function(response){
             return response.json();
@@ -74,7 +79,7 @@ fetch(
           game=response;
           console.log(game);
            renderList(game);
-           playerName(game.player.firstName,game.player.lastName);
+           
         //   renderWord("information") 
           leaderboard(response.games);
           renderHeaders();
@@ -92,7 +97,7 @@ function linkForJoinGame(n){
     for(var k=0;k<n.gamePlayer.length;k++){
         if( n.gamePlayer[k].player.id==game.player.id){
             var str="Return Game"
-            var result = str.link("http://192.168.0.5:8080/web/game.html?gp="+n.gamePlayer[k].id);
+            var result = str.link(DOMAIN + "/web/game.html?gp="+n.gamePlayer[k].id);
             return result;
         }       
     }
@@ -102,7 +107,7 @@ function linkForJoinGame(n){
  var gpId;
  var res;
 function joinGame(n){
-    fetch("http://192.168.0.5:8080/api/game/"+n+"/players",{
+    fetch(DOMAIN + "/api/game/"+n+"/players",{
         method:'POST'
     }).then(function(response){
         res=response.status;
@@ -115,7 +120,7 @@ function joinGame(n){
         console.log(gpId+"-----2----")
         if(res==201){
             alert("Player save in the new game")
-             window.location.href= "http://192.168.0.5:8080/web/game.html?gp="+gpId
+             window.location.href= DOMAIN + "/web/game.html?gp="+gpId
         }
    }).catch(function(error){
     if(res==403){
@@ -124,9 +129,6 @@ function joinGame(n){
     console.log("Request failed: " + error.message);})
 }
 
-function playerName(firstName,lastName){
-document.getElementById("playerName").innerHTML=firstName+ " "+ lastName;
-}
 
 function getItemHtml(game){ 
 var emailList= "";
@@ -158,7 +160,6 @@ function leaderboard(response){
 
                 scoreCalculation(gp.score);
                 map.set(gp.player.email, gp.score);
-                // console.log(gp.player.email+"-------map e yeni oyuncu---->"+JSON.stringify(gp.score))
             } else {
                 // console.log(gp.player.email+"-------map e yeni oyuncu---->"+JSON.stringify(gp.score))
 
@@ -170,16 +171,12 @@ function leaderboard(response){
                 score.ties = score.ties + gp.score.ties; 
                 
                 scoreCalculation(score);
-
                 map.set(gp.player.email, score);
                 // console.log("-------map de bulunan oyuncunun yeni score---->"+score)
 
             }
         });
     });
-    // for (let [email,score] of map.entries()) {
-    //    // console.log(email +":"+ JSON.stringify(score));
-    // }
 }
 
 function scoreCalculation(obj){
@@ -229,6 +226,4 @@ function fillCell(){
         document.getElementById("table").rows[i].cells[4].innerHTML=score.score;
         i = i + 2;
     }
-
 }   
-

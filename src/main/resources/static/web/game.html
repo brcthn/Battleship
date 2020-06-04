@@ -36,11 +36,11 @@
             <div id="tableHitShip"  class="col-xl-1">
                     <table class="table table-bordered table-sm" id="hitShipTable">
                         <thead id="table-headers-hit"> 
-                    <tr> <th>Aircraft Carrier</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
-                    <tr> <th>Battleship</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
-                    <tr> <th>Submarine</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
-                    <tr> <th>Destroyer</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
-                    <tr> <th>Patrol Boat</th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th><img src="Battleship.png"height=40px width=80px></th> <th></th> <th></th> <th></th> <th></th> <th></th> </tr>
+                    <tr> <th><img src="Aircraft carrier.png"height=60px width=90px></img></th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th><img src="Submarine.png"height=60px width=90px></img></th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th><img src="Destroyer.png"height=60px width=90px></img></th> <th></th> <th></th> <th></th> <th></th><th></th></tr>
+                    <tr> <th><img src="Patrol Boat.png"height=40px width=80px></img></th> <th></th> <th></th> <th></th><th> </th><th> </th></tr>
                             <tbody id="table-rows-hit">
                             </tbody>
                         </thead>
@@ -58,7 +58,7 @@
             </table>
         </div>
 
-        <div id="tableSalvo" class="col-xl-4">
+        <div id="tableSalvo" class="col-xl-4 offset-xl-1 ">
             <table class="table table-bordered" id="gameTableSalvo">
                 <thead id="table-headers-salvo">
                     <tbody id="table-rows-salvo">
@@ -71,18 +71,18 @@
 </div>
 
 <div class="row">
-    <div  class="col-xl-1" >
+    <div  class="col-xl-1 offset-xl-2" >
         <form onsubmit="return false ">
            <button type="text"  class="btn  btn-sm" onclick="saveShip()" id="saveShipButton">Save Ship</button>
        </form>
     </div>
-       <div  class=" col-xl-1"  >
+       <div  class=" col-xl-1 offset-xl-2"  >
         <form onsubmit="return false ">
                 <button type="text" id="ShipButton"  class="btn  btn-sm" onclick="returnShipButton()">  <img src="return.png"> </button>
             </form> 
            
         </div>
-        <div  class=" col-xl-1"  >
+        <div  class=" col-xl-1 offset-xl-2 "  >
             <form onsubmit="return false ">
                     <button type="text" id="SalvoButton"  class="btn  btn-sm" onclick="saveSalvo()">Save Salvo  </button>
                 </form> 
@@ -90,21 +90,6 @@
             </div>
 </div>
 
-
-<!-- <div id="tableShip"  class="col-xl-1 ">
-    <table class="table table-bordered  table-hover table-lg" id="hitShipTable">
-        <thead id="table-headers-ship"> 
-     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
-     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
-     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
-     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
-     <tr> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
-            <tbody id="table-rows-ship">
-            </tbody>
-        </thead>
-</table>
-
-</div> -->
 <script src="game.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

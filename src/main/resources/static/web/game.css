@@ -4,6 +4,7 @@
 #gameBody{
     background-image:url(water.jpg) ; 
 }
+
 #leaderboard{
    margin-top: 30px
 }
@@ -13,23 +14,31 @@
 #text{
     margin-top:40px;
 }
+
 #gameTable > thead > tr > th{
     border:1.9px solid #005b96 ;
 }
 #gameTable > tbody > tr > td{
     border:1.9px solid #005b96 ;
+  
 }
 #gameTable > tbody > tr > th  {
     border:1.9px solid #005b96;
 }
 #gameTableSalvo > thead > tr > th{
     border:1.9px solid#005b96 ;
+   
+    
 }
 #gameTableSalvo > tbody > tr > td{
     border:1.9px solid #005b96;
+  
+    
 }
 #gameTableSalvo > tbody > tr > th  {
     border:1.9px solid #005b96;
+
+  
    
 }
 #login { 
@@ -67,23 +76,41 @@ margin-top:150px;
     background-color: transparent;
 }
 #returnShipButton{
-    background-color: #0174DF;
+    background-color:#78C0EF;
     height: 40px;
     
 }
 #ShipButton{
-    background-color: #0174DF;
+    background-color: #78C0EF;
     height: 40px;
 }
 #SalvoButton{
-    background-color: #0174DF;
+    background-color:#78C0EF;
     height: 40px;
     display: none
 }
+#saveShipButton{
+    background-color:#78C0EF;
+    height: 40px;
+}
 
-/* #tableHitShip{
-    margin: 30px
- 
-} */
+
+
+
+#hitShipTable > thead > tr > th{
+    border:1.9px solid black ;
+}
+#hitShipTable> tbody > tr > td{
+    border:1.9px solid black;
+}
+#hitShipTable > tbody > tr > th  {
+    border:1.9px solid black;
+}
+
+#hitShipTable{
+width: 225px;
+}
+
+
 
 
