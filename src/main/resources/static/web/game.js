@@ -6,7 +6,7 @@ var shipNumber = ["1", "1", "1", "1", "1"]
 shipType = ["Aircraft Carrier", "Battleship", "Submarine", "Destroyer", "Patrol Boat"]
 shipLength = ["5", "4", "3", "3", "2"]
 var DOMAIN =" https://batttleship.herokuapp.com"
-var API =" https://batttleship.herokuapp.com:8080"
+var API =" https://batttleship.herokuapp.com"
 // "http://localhost:8080";
 
 const urlParams = new URLSearchParams(window.location.search);
