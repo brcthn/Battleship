@@ -5,10 +5,9 @@ var shipHeader = ["Type", "Lenght"]
 var shipNumber = ["1", "1", "1", "1", "1"]
 shipType = ["Aircraft Carrier", "Battleship", "Submarine", "Destroyer", "Patrol Boat"]
 shipLength = ["5", "4", "3", "3", "2"]
-var DOMAIN = "http://localhost:8080"
-//"https://batttleship.herokuapp.com"
-var API = "http://localhost:8080"
-// "http://localhost:8080";
+
+//var DOMAIN = "http://localhost:8080"
+var DOMAIN = "https://batttleship.herokuapp.com"
 
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('gp');
@@ -18,7 +17,7 @@ function refresh(){
     window.location.href= DOMAIN + "/web/game.html?gp="+myParam
 }
 
-fetch(API + "/api/game_view/" + myParam
+fetch(DOMAIN + "/api/game_view/" + myParam
 ).then(function (response) {
     if (response.status == 401) {
         alert("401")
@@ -236,7 +235,7 @@ if(shipList.length==5){
 }else{
     alert("you should put 5 ships")
 }
-    fetch(API + "/api/games/players/" + gpIdShip + "/ships", {
+    fetch(DOMAIN + "/api/games/players/" + gpIdShip + "/ships", {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -459,7 +458,7 @@ function saveSalvo() {
         alert("You should enter 5 salvo")
     }
 
-    fetch(API+"/api/games/players/" + gp + "/salvos", {
+    fetch(DOMAIN+"/api/games/players/" + gp + "/salvos", {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

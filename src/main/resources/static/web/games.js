@@ -3,15 +3,16 @@ var game=[];
 //     window.location.href= DOMAIN + "/web/games.html"
 // }, 5000)
 
-var DOMAIN = "http://localhost:8080"
-var API = "http://localhost:8080"
-//"http://localhost:8080";
+
+//var DOMAIN = "http://localhost:8080"
+var DOMAIN = "https://batttleship.herokuapp.com"
+
 var data=0;
 function loginFetch(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-   fetch(API + "/api/login?"+"email="+email+"&"+"password="+password,{
+   fetch(DOMAIN + "/api/login?"+"email="+email+"&"+"password="+password,{
    method:'POST'})
    .then(function(response){
       if(response.status==200){
@@ -26,7 +27,7 @@ function loginFetch(){
 }
 
 function logoutFetch(){
-    fetch(API + "/api/logout?")
+    fetch(DOMAIN + "/api/logout?")
     .then(function(response){
         if(response.status==200){
             window.location.href = DOMAIN + "/web/index.html";
@@ -42,7 +43,7 @@ function signup(){
     const email = document.getElementById("username").value
     const password = document.getElementById("password").value
     
-    fetch(API + "/api/players?"+"email="+email +"&"+"password="+ password ,{
+    fetch(DOMAIN + "/api/players?"+"email="+email +"&"+"password="+ password ,{
         method:'POST'
     }).then(function(response){
         if(response.status==403){
@@ -56,7 +57,7 @@ function signup(){
  function createGameFetch(){
      const email=game.player.email
      
-     fetch(API + "/api/games?username="+email,{
+     fetch(DOMAIN + "/api/games?username="+email,{
         method:'POST'
     }).then(function(response){
         var data=response.json();
@@ -72,7 +73,7 @@ function signup(){
 }
 
 fetch(
-    API + "/api/games"
+    DOMAIN + "/api/games"
     )
         .then(function(response){
             return response.json();
@@ -108,7 +109,7 @@ function linkForJoinGame(n){
  var gpId;
  var res;
 function joinGame(n){
-    fetch(API + "/api/game/"+n+"/players",{
+    fetch(DOMAIN + "/api/game/"+n+"/players",{
         method:'POST'
     }).then(function(response){
         res=response.status;
