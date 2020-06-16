@@ -3,8 +3,8 @@ var game=[];
 //     window.location.href= DOMAIN + "/web/games.html"
 // }, 5000)
 
-var DOMAIN =" https://batttleship.herokuapp.com"
-var API =" https://batttleship.herokuapp.com"
+var DOMAIN = "http://localhost:8080"
+var API = "http://localhost:8080"
 //"http://localhost:8080";
 var data=0;
 function loginFetch(){

@@ -5,8 +5,9 @@ var shipHeader = ["Type", "Lenght"]
 var shipNumber = ["1", "1", "1", "1", "1"]
 shipType = ["Aircraft Carrier", "Battleship", "Submarine", "Destroyer", "Patrol Boat"]
 shipLength = ["5", "4", "3", "3", "2"]
-var DOMAIN =" https://batttleship.herokuapp.com"
-var API =" https://batttleship.herokuapp.com"
+var DOMAIN = "http://localhost:8080"
+//"https://batttleship.herokuapp.com"
+var API = "http://localhost:8080"
 // "http://localhost:8080";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -40,20 +41,21 @@ fetch(API + "/api/game_view/" + myParam
         document.getElementById("saveShipButton").style.display='inline';   
         document.getElementById("SalvoButton").style.display='none';
     }
+    var intervalId;
     if(info.state=="Wait"){
         document.getElementById("SalvoButton").style.display='none';
         alert("Wait other player")
-        setInterval(function(){
+        intervalId  = setInterval(function(){
             refresh();
         }, 10000)
      } 
     if(info.state=="Enter Salvo"){
         document.getElementById("SalvoButton").style.display='inline';
      }
-// if(info.state="Game Over"){
-//          alert(" Game Over")
-     
-// }
+     if(info.state=="Game Over"){
+       clearInterval(intervalId);
+         alert("Game Over")
+     }
     selectcellSalvo();
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
@@ -146,7 +148,7 @@ function getPlayerSalvo() {
     for(var i = 0; i< info.gamePlayers.length; i++){
         if(info.gamePlayers[i].id == info.id){
             currentPlayerId = info.gamePlayers[i].player.id;
-            // console.log("Ben: " + currentPlayerId);
+            console.log("Ben: " + currentPlayerId);
         }
     }
     for (var i = 0; i < info.salvoes.length; i++) {
@@ -155,17 +157,23 @@ function getPlayerSalvo() {
             var salvoLocation = info.salvoes[i].locations[k];
             
             if (currentPlayerId == info.salvoes[i].player) {
+
+                info.history.forEach(history=>{
+                   if(history.hitLocation.includes(salvoLocation)){
+                        document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML = '<img src="giphy.gif"height=30px width=40px ></img>';
+                   }else{
+                        document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#426585";
+                   }
+                })
+
                 // console.log("---row---"+indexRow(salvoLocation) + "----cell---"+indexCell(salvoLocation));
-                document.getElementById("gameTableSalvo")
-                .rows[indexRow(salvoLocation)]
-                .cells[indexCell(salvoLocation)].style.backgroundColor = "#426585";
             } else {
                 var isHit = false;
                 info.ship.forEach(s => {
                     if (!isHit) {
                         if (s.locations.includes(info.salvoes[i].locations[k])) {
-                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML ='<img src="giphy.gif"height=30px width=40px ></img>' 
-                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#78C0EF";                            
+                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML ='<img src="giphy.gif"height=30px width=40px ></img>'
+                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#78C0EF";
                             isHit = true;
                         } else {
                             document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#DC7E4C";
@@ -399,6 +407,7 @@ function returnShipButton() {
 
 var salvo=0;
 function selectcellSalvo() {
+if(info.state!="Game Over"){
     var table = document.getElementById("gameTableSalvo");
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
@@ -411,6 +420,7 @@ function selectcellSalvo() {
             }
         }
     }
+  }
 }
 
 salvoList=[];
@@ -433,7 +443,7 @@ function clickedCellsSalvo(clickedCell, i) {
 function salvoBody(turn,locations){
     this.turn=turn;
     this.locations=locations;
-}
+    }
 
 function saveSalvo() {
     if(info.ship == 'undefined' || info.ship.length == 0 || info.ship.length < 0){

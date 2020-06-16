@@ -1,11 +1,23 @@
 package com.brcthn.battleship.persistance.dto;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class HistoryDto {
     private String type;
     private Integer turn;
     private boolean sink;
     private Integer hit;
     private Integer left;
+    private List<String> hitLocation = new LinkedList<>();
+
+    public List<String> getHitLocation() {
+        return hitLocation;
+    }
+
+    public void addHitLocation(String location){
+        this.hitLocation.add(location);
+    }
 
     public Integer getLeft() {
         return left;

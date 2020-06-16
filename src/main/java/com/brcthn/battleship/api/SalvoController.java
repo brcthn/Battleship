@@ -188,7 +188,6 @@ public class SalvoController {
         if (currentGamePlayer.getSalvoes().isEmpty()) {
             return "Enter Salvo";
         }
-
         int mySum = scoreRepository.findById(currentGamePlayer.getScore().getId()).get().getSumHit();
         int opponentSum = scoreRepository.findById(opponentGamePlayer.getScore().getId()).get().getSumHit();
         if(mySum == 17 && opponentSum == 17){
@@ -230,12 +229,18 @@ public class SalvoController {
             return "Game Over";
         }
 
+        if(mySum == 17 || opponentSum == 17){
+            return "Game Over";
+        }
+
         if (currentGamePlayer.getSalvoes().size() > opponentGamePlayer.getSalvoes().size()) {
             return "Wait";
         }
         if (currentGamePlayer.getSalvoes().size() <= opponentGamePlayer.getSalvoes().size()) {
             return "Enter Salvo";
         }
+
+
         return null;
     }
 
@@ -258,7 +263,6 @@ public class SalvoController {
                     for (Salvo salvo : gamePlayer.getSalvoes()) {
                         if (salvo.getLocation().contains(location)) {
                             HistoryDto historyShip = contains(history, ship);
-
                             if (historyShip == null || historyShip.getTurn() != salvo.getTurnNumber()) {
 
 
@@ -272,6 +276,9 @@ public class SalvoController {
                                 HistoryDto historyDto = new HistoryDto();
                                 historyDto.setType(ship.getType());
                                 historyDto.setTurn(salvo.getTurnNumber());
+
+                                historyDto.addHitLocation(location);
+
                                 if (historyDto.getHit() == null) {
                                     historyDto.setHit(0);
                                 }
@@ -286,6 +293,7 @@ public class SalvoController {
                                 history.add(historyDto);
 
                             } else {
+                                historyShip.addHitLocation(location);
                                 historyShip.setHit(historyShip.getHit() + 1);
                                 sumHit++;
                                 //sink // if ve else de ayni seyi yapiyor.
@@ -447,7 +455,6 @@ public class SalvoController {
             shipRepository.save(ship);
             gamePlayer.add(ship);
         }
-
         gamePlayerRepository.save(gamePlayer);
 
         return new ResponseEntity<>("", HttpStatus.CREATED);
