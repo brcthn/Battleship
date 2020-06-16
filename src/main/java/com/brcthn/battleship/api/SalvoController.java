@@ -105,7 +105,6 @@ public class SalvoController {
         Player loggedUser = currentUser(authentication);
 
         GamePlayer gamePlayer = gamePlayerRepository.findById(gamePlayerId).get();
-
         if (loggedUser.getId() != gamePlayer.getPlayer().getId()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
@@ -171,9 +170,11 @@ public class SalvoController {
 
         if(history !=  null){
             gamePlayerPersonDto.setHistory(history);
+            if(!gamePlayer.isFinished() || !opponentGamePlayer.isFinished()){
+                String state = state(currentGamePlayer, opponentGamePlayer, history);
+                gamePlayerPersonDto.setState(state);
+            }
 
-            String state = state(currentGamePlayer, opponentGamePlayer, history);
-            gamePlayerPersonDto.setState(state);
         }
         return gamePlayerPersonDto;
     }
@@ -226,10 +227,17 @@ public class SalvoController {
                 opponentNewScore.setPlayer(opponentGamePlayer.getPlayer());
                 scoreRepository.save(opponentNewScore);
             }
+
+            currentGamePlayer.setFinished(true);
+            gamePlayerRepository.save(currentGamePlayer);
             return "Game Over";
         }
 
         if(mySum == 17 || opponentSum == 17){
+            currentGamePlayer.setFinished(true);
+            gamePlayerRepository.save(currentGamePlayer);
+            opponentGamePlayer.setFinished(true);
+            gamePlayerRepository.save(opponentGamePlayer);
             return "Game Over";
         }
 
