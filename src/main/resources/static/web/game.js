@@ -6,8 +6,8 @@ var shipNumber = ["1", "1", "1", "1", "1"]
 shipType = ["Aircraft Carrier", "Battleship", "Submarine", "Destroyer", "Patrol Boat"]
 shipLength = ["5", "4", "3", "3", "2"]
 
-//var DOMAIN = "http://localhost:8080"
-var DOMAIN = "https://batttleship.herokuapp.com"
+var DOMAIN = "http://localhost:8080"
+//var DOMAIN = "https://batttleship.herokuapp.com"
 
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('gp');
@@ -159,7 +159,7 @@ function getPlayerSalvo() {
 
                 info.history.forEach(history=>{
                    if(history.hitLocation.includes(salvoLocation)){
-                        document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML = '<img src="giphy.gif"height=30px width=40px ></img>';
+                        document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML = '<img src="giphy.gif"height=30px width=30px ></img>';
                    }else{
                         document.getElementById("gameTableSalvo").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#426585";
                    }
@@ -171,7 +171,7 @@ function getPlayerSalvo() {
                 info.ship.forEach(s => {
                     if (!isHit) {
                         if (s.locations.includes(info.salvoes[i].locations[k])) {
-                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML ='<img src="giphy.gif"height=30px width=40px ></img>'
+                            document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].innerHTML ='<img src="giphy.gif"height=30px width=30px ></img>'
                             document.getElementById("gameTable").rows[indexRow(salvoLocation)].cells[indexCell(salvoLocation)].style.backgroundColor = "#78C0EF";
                             isHit = true;
                         } else {
@@ -588,23 +588,23 @@ function paintHitShip(){
 //  }
  function putShipImage(cell, shipType){
     if( shipType=="Aircraft Carrier"){
-        cell.innerHTML='<img src="Aircraft carrier.png"height=20px width=30px></img>'
+        cell.innerHTML='<img src="Aircraft carrier.png" height=20px width=25px></img>'
         cell.style.backgroundColor = "#78C0EF"
     }
     if( shipType=="Battleship"){
-        cell.innerHTML='<img src="Battleship.png"height=20px width=30px></img>'
+        cell.innerHTML='<img src="Battleship.png"height=20px width=25px ></img>'
         cell.style.backgroundColor = "#78C0EF"
     }
     if( shipType=="Submarine"){
-        cell.innerHTML='<img src="Submarine.png"height=20px width=30px></img>'
+        cell.innerHTML='<img src="Submarine.png"height=20px width=25px ></img>'
         cell.style.backgroundColor = "#78C0EF"
     }
     if( shipType=="Destroyer"){
-        cell.innerHTML='<img src="Destroyer.png"height=20px width=30px></img>'
+        cell.innerHTML= '<img src="Destroyer.png"height=20px width=25px ></img>'
         cell.style.backgroundColor = "#78C0EF"
     }
     if( shipType=="Patrol Boat"){
-        cell.innerHTML='<img src="Patrol Boat.png"height=20px width=30px</img>'
+        cell.innerHTML='<img src="Patrol Boat.png"height=20px width=25px ƒ</img>'
         cell.style.backgroundColor = "#78C0EF"
     }
  }

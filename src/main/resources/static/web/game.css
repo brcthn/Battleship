@@ -17,16 +17,30 @@
 
 #gameTable > thead > tr > th{
     border:1.9px solid #005b96 ;
+    padding:19px;
+
 }
 #gameTable > tbody > tr > td{
     border:1.9px solid #005b96 ;
-  
+
+
 }
 #gameTable > tbody > tr > th  {
     border:1.9px solid #005b96;
+
+
 }
+#tableSalvo{
+padding-left:0.5px}
+
+#tableShip{
+padding-right:0.5px}
+
+
+
 #gameTableSalvo > thead > tr > th{
     border:1.9px solid#005b96 ;
+    padding:19px;
    
     
 }
@@ -110,6 +124,10 @@ margin-top:150px;
 #hitShipTable{
 width: 225px;
 }
+
+
+
+
 
 
 
