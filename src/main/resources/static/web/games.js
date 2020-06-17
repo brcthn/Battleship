@@ -4,8 +4,8 @@ var game=[];
 // }, 5000)
 
 
-var DOMAIN = "http://localhost:8080"
-//var DOMAIN = "https://batttleship.herokuapp.com"
+//var DOMAIN = "http://localhost:8080"
+var DOMAIN = "https://batttleship.herokuapp.com"
 
 var data=0;
 function loginFetch(){
