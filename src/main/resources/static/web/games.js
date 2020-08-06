@@ -40,8 +40,6 @@ function logoutFetch(){
 }
 
 function signup(){
-
-
     const firstName = document.getElementById("signup-firstname").value
     const lastName = document.getElementById("signup-lastname").value
     const email = document.getElementById("signup-email").value

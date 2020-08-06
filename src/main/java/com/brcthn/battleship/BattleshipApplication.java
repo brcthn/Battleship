@@ -57,7 +57,7 @@ public class BattleshipApplication extends SpringBootServletInitializer{
     @Bean
     public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
         return (args) -> {
-            Player player1 = new Player(  "Jack", "Bauer", "j.bauer@ctu.gov",passwordEncoder.encode("24"));
+            Player player1 = new Player(  "John", "Doe", "j.doe@ctu.gov",passwordEncoder.encode("24"));
             playerRepository.save(player1);
             Player player2 = new Player( "Chloe", "O'Brian", "c.obrian@ctu.gov", passwordEncoder.encode("42"));
             playerRepository.save(player2);
@@ -319,9 +319,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/web/game.html").permitAll()
                 .antMatchers("/web/game.js").permitAll()
                 .antMatchers("/web/game.css").permitAll()
-               .antMatchers("/web/index.html").permitAll()
-                .antMatchers("/web/main.js").permitAll()
                 .antMatchers("/web/index.html").permitAll()
+                .antMatchers("/web/Destroyer.png").permitAll()
+                .antMatchers("/web/main.js").permitAll()
                 .antMatchers("/api/signup*").permitAll()
                 .antMatchers("/api/login*").permitAll()
                 .antMatchers("/api/games").hasAnyAuthority("USER")
