@@ -57,9 +57,9 @@ public class BattleshipApplication extends SpringBootServletInitializer{
     @Bean
     public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
         return (args) -> {
-            Player player1 = new Player(  "John", "Doe", "john@doe.gov",passwordEncoder.encode("24"));
+            Player player1 = new Player(  "John", "Doe", "john@doe.com",passwordEncoder.encode("11"));
             playerRepository.save(player1);
-            Player player2 = new Player( "Chloe", "O'Brian", "c.obrian@ctu.gov", passwordEncoder.encode("42"));
+            Player player2 = new Player( "Jane", "Doe", "jane@doe.com", passwordEncoder.encode("22"));
             playerRepository.save(player2);
 //            Player player3 = new Player( "t.almeida@ctu.gov",passwordEncoder.encode( "mole") );
 //            player3.setFirstName("Tony"); player3.setLastName("Almeida"); player3.setUserName("TonyA");
