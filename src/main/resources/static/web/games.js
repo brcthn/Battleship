@@ -40,10 +40,14 @@ function logoutFetch(){
 }
 
 function signup(){
-    const email = document.getElementById("username").value
-    const password = document.getElementById("password").value
-    
-    fetch(DOMAIN + "/api/players?"+"email="+email +"&"+"password="+ password ,{
+
+
+    const firstName = document.getElementById("signup-firstname").value
+    const lastName = document.getElementById("signup-lastname").value
+    const email = document.getElementById("signup-email").value
+    const password = document.getElementById("signup-password").value
+    console.log("------------>"+firstName+lastName+email+password);
+    fetch(DOMAIN + "/api/signup?"+"firstName="+firstName +"&"+"lastName="+lastName+"&"+"email="+email +"&"+"password="+ password ,{
         method:'POST'
     }).then(function(response){
         if(response.status==403){

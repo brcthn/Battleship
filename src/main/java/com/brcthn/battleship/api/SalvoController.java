@@ -355,8 +355,8 @@ public class SalvoController {
         return playerRepository.findByEmail(authentication.getName());
     }
 
-    @RequestMapping(value = "/players", method = RequestMethod.POST)
-    public ResponseEntity<Object> register(@RequestParam String email, @RequestParam String password) {
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
         if (email.isEmpty()) {
             return new ResponseEntity<>("No email given", HttpStatus.FORBIDDEN);
         }
@@ -365,7 +365,7 @@ public class SalvoController {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
-        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        playerRepository.save(new Player(firstName, lastName, email, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

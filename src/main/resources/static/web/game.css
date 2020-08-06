@@ -47,17 +47,19 @@ padding-right:0.5px}
     border:1.9px solid #005b96;
 }
 #login { 
-margin-top:150px;
+margin-top:10px;
 }
 #username ,#password{
     margin-right:80px
 }
 #loginButton{
-    margin-top:20px;
+margin-top:20px
 }
+
 #signupButton{
-    margin-top:20px; 
+margin-top:20px
 }
+
 #logoutButton{
     background-color:rgb(216, 212, 212);
     color:black;
@@ -114,4 +116,10 @@ margin-top:150px;
 
 #hitShipTable{
 width: 225px;
+}
+#indexImg{
+width:110px;
+height:110px;
+margin-top:40px;
+margin-left:40px
 }

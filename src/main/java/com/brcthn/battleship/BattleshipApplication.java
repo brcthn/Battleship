@@ -57,11 +57,9 @@ public class BattleshipApplication extends SpringBootServletInitializer{
     @Bean
     public CommandLineRunner initData(GameRepository gameRepository, PlayerRepository playerRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
         return (args) -> {
-            Player player1 = new Player(  "j.bauer@ctu.gov",passwordEncoder.encode("24"));
-            player1.setFirstName("Jack"); player1.setLastName("Bauer"); player1.setUserName("JackB");
+            Player player1 = new Player(  "Jack", "Bauer", "j.bauer@ctu.gov",passwordEncoder.encode("24"));
             playerRepository.save(player1);
-            Player player2 = new Player( "c.obrian@ctu.gov", passwordEncoder.encode("42"));
-            player2.setFirstName("Chloe"); player2.setLastName("O'Brian"); player2.setUserName("ChloeO");
+            Player player2 = new Player( "Chloe", "O'Brian", "c.obrian@ctu.gov", passwordEncoder.encode("42"));
             playerRepository.save(player2);
 //            Player player3 = new Player( "t.almeida@ctu.gov",passwordEncoder.encode( "mole") );
 //            player3.setFirstName("Tony"); player3.setLastName("Almeida"); player3.setUserName("TonyA");
@@ -324,11 +322,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/main.js").permitAll()
                 .antMatchers("/web/index.html").permitAll()
-                .antMatchers("/api/players*").permitAll()
+                .antMatchers("/api/signup*").permitAll()
                 .antMatchers("/api/login*").permitAll()
                 .antMatchers("/api/games").hasAnyAuthority("USER")
                 .antMatchers("/api/leader_board").hasAnyAuthority("USER")
-                .antMatchers("/api/players").hasAnyAuthority("USER")
+                .antMatchers("/api/signup").hasAnyAuthority("USER")
                 .antMatchers("/api/game_view/*").hasAnyAuthority("USER")
                 .antMatchers("/rest/*").permitAll()
 

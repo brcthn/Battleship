@@ -40,12 +40,11 @@ public class Player {
         this.id = id;
     }
 
-    public Player( String email,  String password) {
-        //this.firstName = firstName;
-//        this.lastName = lastName;
-       // this.userName = userName;
+    public Player(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-     this.password = password;
+        this.password = password;
     }
 
     public void setPassword(String password) {
@@ -78,14 +77,6 @@ public class Player {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public List<Score> getScores() {
