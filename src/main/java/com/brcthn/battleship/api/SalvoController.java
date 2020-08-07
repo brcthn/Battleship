@@ -173,6 +173,9 @@ public class SalvoController {
             if(!gamePlayer.isFinished() || !opponentGamePlayer.isFinished()){
                 String state = state(currentGamePlayer, opponentGamePlayer, history);
                 gamePlayerPersonDto.setState(state);
+            } else {
+                //TODO: siFinished
+                gamePlayerPersonDto.setState("Game Over");
             }
 
         }

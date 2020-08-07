@@ -28,13 +28,19 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-xl-5 offset-xl-4">
+    <div class="col-xl-5 ">
         <button type="text" onclick="loginFetch()" id="loginButton" class="btn btn-outline-dark">Log in</button>
     </div>
-    <div class="col-xl-5 offset-xl-4 ">
+    <div class="col-xl-5 ">
         <button type="text" id="signupButton" data-toggle="modal" data-target="#staticBackdrop"
                 class="btn btn-outline-dark">Sign Up
         </button>
+    </div>
+
+    <div class="justify-content-center">
+        <video id="video" controls>
+            <source src="Intro.mov">
+        </video>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
@@ -69,7 +75,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="signup()">Sign up</button>
+                    <button type="button" class="btn btn-secondary" onclick="signup()" id="signup" data-dismiss="modal">Sign up</button>
                 </div>
             </div>
         </div>

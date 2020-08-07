@@ -50,8 +50,10 @@ function signup(){
     }).then(function(response){
         if(response.status==403){
             alert(response.status)
-        }
-    }).catch(function(error){
+        }if(response.status==200){
+         $(document).ready(function(){
+         $("#staticBackdrop").on('hidden.bs.modal')})
+        }}).catch(function(error){
         console.log("Request failed: " + error.message);
       })
 }
