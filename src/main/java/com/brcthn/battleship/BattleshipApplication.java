@@ -321,6 +321,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/web/game.css").permitAll()
                 .antMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/Destroyer.png").permitAll()
+                .antMatchers("/web/Intro.mov").permitAll()
                 .antMatchers("/web/main.js").permitAll()
                 .antMatchers("/api/signup*").permitAll()
                 .antMatchers("/api/login*").permitAll()
