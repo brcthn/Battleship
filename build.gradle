@@ -12,8 +12,31 @@ repositories {
     mavenCentral()
 }
 
-bootRun { sourceResources sourceSets.main }
+// ====================================================
+// BUILD AND RUN INSTRUCTIONS
+// ====================================================
+// To build the application:
+//   ./gradlew clean build
+//   This will create battleship.jar in build/libs directory
+//
+// To run the application locally:
+//   ./gradlew bootRun
+//   Application will run on http://localhost:8080
+//
+// To deploy to Vercel:
+//   1. Run ./gradlew clean build
+//   2. Use the battleship.jar from build/libs directory
+// ====================================================
 
+bootRun { 
+    sourceResources sourceSets.main 
+}
+
+// Configure the JAR task to create an executable JAR
+bootJar {
+    archiveFileName = 'battleship.jar'
+    launchScript()
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
