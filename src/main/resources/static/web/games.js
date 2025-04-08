@@ -3,7 +3,7 @@ var game = [];
 //     window.location.href= DOMAIN + "/web/games.html"
 // }, 5000)
 
-var DOMAIN = "https://battleship-azure.vercel.app";
+var DOMAIN = "https://online-battleship-game-bf87411b7ca5.herokuapp.com";
 //var DOMAIN = "https://batttleship.herokuapp.com"
 
 var data = 0;

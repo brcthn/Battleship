@@ -12,7 +12,7 @@ shipType = [
 ];
 shipLength = ["5", "4", "3", "3", "2"];
 
-var DOMAIN = "https://battleship-azure.vercel.app";
+var DOMAIN = "https://online-battleship-game-bf87411b7ca5.herokuapp.com";
 //var DOMAIN = "http://localhost:8080"
 //var DOMAIN = "https://batttleship.herokuapp.com"
 

@@ -3,13 +3,13 @@
 //     const email = document.getElementById("username").value
 //     const password = document.getElementById("password").value
 
-//    fetch("https://battleship-azure.vercel.app/api/login?"+"email="+email+"&"+"password="+password,{
+//    fetch("https://online-battleship-game-bf87411b7ca5.herokuapp.com/api/login?"+"email="+email+"&"+"password="+password,{
 //    method:'POST'})
 //    .then(function(response){
 //       console.log("================> " + response.status);
 //       if(response.status==200){
 //         //redirect
-//         window.location.href = "https://battleship-azure.vercel.app/web/games.html";
+//         window.location.href = "https://online-battleship-game-bf87411b7ca5.herokuapp.com/web/games.html";
 //       }else{
 //       alert("ad,lsf,")
 //       }
