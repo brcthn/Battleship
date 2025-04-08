@@ -12,7 +12,8 @@ shipType = [
 ];
 shipLength = ["5", "4", "3", "3", "2"];
 
-var DOMAIN = "http://localhost:8080";
+var DOMAIN = "https://battleship-azure.vercel.app";
+//var DOMAIN = "http://localhost:8080"
 //var DOMAIN = "https://batttleship.herokuapp.com"
 
 const urlParams = new URLSearchParams(window.location.search);
